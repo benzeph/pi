@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paternity Index</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen"></head>
+  <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 960px;
+      }
+      .container > hr {
+        margin: 60px 0;
+      }
+      
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+      }
+    </style>
+<body>
+  <div class="container">
+    <div class="masthead">
+      <h3 class="text-error">Paternity Testing</h3>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <ul class="nav">
+              <li >
+                <a href="../index.html">首页</a>
+              </li>
+              <li class="active">
+                <a href="paternity-index.html">父权指数计算</a>
+              </li>
+              <li>
+                <a href="Services.html">项目2</a>
+              </li>
+              <li >
+                <a href="Downloads.html">项目3</a>
+              </li>
+              <li>
+                <a href="About.html">项目4</a>
+              </li>
+              <li>
+                <a href="Contact.html">项目5</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul id="myTab" class="nav nav-tabs">
+      <li class="active">
+        <a href="#piParentsTab" data-toggle="tab">双亲</a>
+      </li>
+      <li>
+        <a href="#profile" data-toggle="tab">单亲</a>
+      </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="piParentsTab">
+        <form id="form">
+          <table class="table table-striped table-bordered" id="piParentsTable">
+            <thead>
+              <tr id="trHeader">
+                <th>
+                  <a href="#" title="描述基因座">基因座</a>
+                </th>
+                <th>
+                  <a href="#" title="描述F1">F1</a>
+                </th>
+                <th>
+                  <a href="#" title="描述F2">F2</a>
+                </th>
+                <th>
+                  <a href="#" title="描述M1">M1</a>
+                </th>
+                <th>
+                  <a href="#" title="描述M2">M2</a>
+                </th>
+                <th>
+                  <a href="#" title="描述C1">C1</a>
+                </th>
+                <th>
+                  <a href="#" title="描述C2">C2</a>
+                </th>
+                <th>
+                  <a href="#" title="描述PI">PI</a>
+                </th>
+                <th>
+                  <a href="#" title="描述操作">操作</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </form>
+        <div>
+          <button class="btn  btn-success" type="button" onclick="piParentsAddRow()"> <i class="icon-plus icon-white"></i>
+            添加
+          </button>
+          <button class="btn  btn-info" type="button" onclick=""> <i class="icon-print icon-white"></i>
+            打印
+          </button>
+          <button class="btn  btn-warning" type="button" onclick="piParentsClearAllRows()" title="清除全部的数据">
+            <i class="icon-trash  icon-white"></i>
+            清除
+          </button>
+          <span class="text-info">基因座的个数:</span>
+          <span class="badge badge-important " id="piParentsRowCount">0</span>
+          <input type='hidden' id='piParentsTrLastIndex' value="1"/>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile"></div>
+    </div>
+    <div class="footer">
+      <hr>
+      <p>&copy; Company 2013</p>
+    </div>
+  </div>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/pi-parents.js"></script>
+  <script type="text/javascript" src="../js/jquery-validate.min.js"></script>
+</body>
+</html>
