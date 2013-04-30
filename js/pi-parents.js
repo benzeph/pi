@@ -97,11 +97,11 @@ function calculatePi(rowID){
                     pi="1/(2*C1value+2*C2value)";
                 }
             }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
-                if(F1!=F2&&(F1==C1||F1==C2||F2==C1||F2=C2)){
-                    if(C1==F1||C1==F2){
-                        pi="1/(2*C1value)";
-                    }else{
+                if(F1!=F2&&(F1==C1||F1==C2||F2==C1||F2==C2)){
+                    if(C1==M1||C1==M2){
                         pi="1/(2*C2value)";
+                    }else if(C2==M1||C2==M2){
+                        pi="1/(2*C1value)";
                     }
                 }
             }
