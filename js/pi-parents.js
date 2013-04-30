@@ -76,38 +76,32 @@ function calculatePi(rowID){
         var pi = 0;
         if(C1==C2){
             if(F1==F2&&F1==C1&&(M1==F1||M2==F1)){
-                pi = 1/C1value;
+                pi = "1/C1value";
             }
             if(F1!=F2&&(F1==C1||F2==C1)&&(M1==F1||M2==F1)){
-                pi = 1/(2*C1value);
+                pi = "1/(2*C1value)";
             }
-        }
-        if(C1!=C2){
+        }else if(C1!=C2){
             if(F1==F2&&(F1==C1||F1==C2)){
                 if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                    pi=1/(C1value+C2value);
+                    pi="1/(C1value+C2value)";
+                }else if(M1==M2&&(M1==C1||M1==C2)){
+                    pi="1/F1value";
+                }else if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
+                    pi="1/F1value";
                 }
-                if(M1==M2&&(M1==C1||M1==C2)){
-                    pi=1/F1value;
-                }
-                if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
-                    pi=1/F1value;
-                }
-            }
-            if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
+            }else if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
                 if(F1!=F2&&(F1==C1||F1==C2)&&(F2==C1||F2==C2)){
-                    pi=1/(C1value+C2value);
+                    pi="1/(C1value+C2value)";
+                }else if(F1!=F2&&(C1==F1||C1==F2||C2==F1||C2==F2)&&((F1!=C1&&F1!=C2)||(F2!=C1&&F2!=C2))){
+                    pi="1/(2*C1value+2*C2value)";
                 }
-                if(F1!=F2&&(C1==F1||C1==F2||C2==F1||C2==F2)&&((F1!=C1&&F1!=C2)||(F2!=C1&&F2!=C2))){
-                    pi=1/(2*C1value+2*C2value);
-                }
-            }
-            if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
+            }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
                 if(F1!=F2&&(F1==C1||F1==C2||F2==C1||F2=C2)){
                     if(C1==F1||C1==F2){
-                        pi=1/(2*C1value);
+                        pi="1/(2*C1value)";
                     }else{
-                        pi=1/(2*C2value);
+                        pi="1/(2*C2value)";
                     }
                 }
             }
