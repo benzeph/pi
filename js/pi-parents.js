@@ -43,7 +43,6 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    calculatePi(Number(piParentsCurrentCount.value));
 }
 
 function reloadValidate(){
@@ -109,6 +108,13 @@ function calculatePi(rowID){
         var PI = document.getElementById("PI_" + (rowID - 1));
         PI.innerHTML = pi;
     }
+}
+
+function calculate(){
+     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
+     for (var i = 2; i <= Number(piParentsCurrentCount.value) + 1; i++) {
+        calculatePi(i);
+     };
 }
 
 function piParentsDeleteRow(rowid) {
