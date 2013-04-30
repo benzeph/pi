@@ -9,7 +9,7 @@
 ```html
 <?xml version="1.0" encoding="utf-8"?>
 <allele>
-  <a12>0.5</a12>
+	<a12>0.5</a12>
 	<a13>0.6</a13>
 	<a14>0.7</a14>
 </allele>
