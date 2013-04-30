@@ -59,12 +59,12 @@ function reloadValidate(){
 function calculatePi(rowID){
     if(rowID > 0){
         var locus = piParentsFindObj("locus_" + (rowID - 1),document);
-        var F1 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var F2 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var M1 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var M2 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var C1 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var C2 = getAllete("/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
+        var F1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
+        var F2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("F2_" + (rowID - 1),document).value);
+        var M1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("M1_" + (rowID - 1),document).value);
+        var M2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("M2_" + (rowID - 1),document).value);
+        var C1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("C1_" + (rowID - 1),document).value);
+        var C2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("C2_" + (rowID - 1),document).value);
         var pi = 0;
         if(C1==C2){
             if(F1==F2&&F1==C1&&(M1==F1||M2==F1)){
