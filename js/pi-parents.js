@@ -22,10 +22,10 @@ function piParentsAddRow() {
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML = "<select id='locus_" + rowID + "'class='span2'><option value=\"D3S1358\">D3S1358</option><option value=\"saab\">Saab</option><option value=\"fiat\">Fiat</option><option value=\"audi\">Audi</option></select>";
-    var newF1 = newTR.insertCell(1);
-    newF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='F1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
-    var newF2 = newTR.insertCell(2);
-    newF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='F2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newAF1 = newTR.insertCell(1);
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newAF2 = newTR.insertCell(2);
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM1 = newTR.insertCell(3);
     newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM2 = newTR.insertCell(4);
@@ -61,47 +61,47 @@ function reloadValidate(){
 function calculatePi(rowID){
     if(rowID > 0){
         var locus = piParentsFindObj("locus_" + (rowID - 1),document).value;
-        var F1 = piParentsFindObj("F1_" + (rowID - 1),document).value;
-        var F2 = piParentsFindObj("F2_" + (rowID - 1),document).value;
+        var AF1 = piParentsFindObj("AF1_" + (rowID - 1),document).value;
+        var AF2 = piParentsFindObj("AF2_" + (rowID - 1),document).value;
         var M1 = piParentsFindObj("M1_" + (rowID - 1),document).value;
         var M2 = piParentsFindObj("M2_" + (rowID - 1),document).value;
         var C1 = piParentsFindObj("C1_" + (rowID - 1),document).value;
         var C2 = piParentsFindObj("C2_" + (rowID - 1),document).value;
-        var F1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + F1);
-        var F2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + F2);
+        var AF1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF1);
+        var AF2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF2);
         var M1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M1);
         var M2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M2);
         var C1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C1);
         var C2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C2);
         var pi = 0;
         if(C1==C2){
-            if(F1==F2&&F1==C1&&(M1==F1||M2==F1)){
-                pi = "1/C1value";
+            if(AF1==AF2&&AF1==C1&&(M1==AF1||M2==AF1)){
+                pi = 1/Number(C1value);
             }
-            if(F1!=F2&&(F1==C1||F2==C1)&&(M1==F1||M2==F1)){
-                pi = "1/(2*C1value)";
+            if(AF1!=AF2&&(AF1==C1||AF2==C1)&&(M1==AF1||M2==AF1)){
+                pi = 1/(2*Number(C1value));
             }
         }else if(C1!=C2){
-            if(F1==F2&&(F1==C1||F1==C2)){
+            if(AF1==AF2&&(AF1==C1||AF1==C2)){
                 if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                    pi="1/(C1value+C2value)";
+                    pi=1/(Number(C1value)+Number(C2value));
                 }else if(M1==M2&&(M1==C1||M1==C2)){
-                    pi="1/F1value";
+                    pi=1/Number(AF1value);
                 }else if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
-                    pi="1/F1value";
+                    pi=1/Number(AF1value);
                 }
             }else if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                if(F1!=F2&&(F1==C1||F1==C2)&&(F2==C1||F2==C2)){
-                    pi="1/(C1value+C2value)";
-                }else if(F1!=F2&&(C1==F1||C1==F2||C2==F1||C2==F2)&&((F1!=C1&&F1!=C2)||(F2!=C1&&F2!=C2))){
-                    pi="1/(2*C1value+2*C2value)";
+                if(AF1!=AF2&&(AF1==C1||AF1==C2)&&(AF2==C1||AF2==C2)){
+                    pi=1/(Number(C1value)+Number(C2value));
+                }else if(AF1!=AF2&&(C1==AF1||C1==AF2||C2==AF1||C2==AF2)&&((AF1!=C1&&AF1!=C2)||(AF2!=C1&&AF2!=C2))){
+                    pi=1/(2*Number(C1value)+2*Number(C2value));
                 }
             }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
-                if(F1!=F2&&(F1==C1||F1==C2||F2==C1||F2==C2)){
+                if(AF1!=AF2&&(AF1==C1||AF1==C2||AF2==C1||AF2==C2)){
                     if(C1==M1||C1==M2){
-                        pi="1/(2*C2value)";
+                        pi=1/(2*Number(C2value));
                     }else if(C2==M1||C2==M2){
-                        pi="1/(2*C1value)";
+                        pi=1/(2*Number(C1value));
                     }
                 }
             }
