@@ -139,7 +139,10 @@
           </button>
           <span class="text-info">基因座的个数:</span>
           <span class="badge badge-important " id="piParentsRowCount">0</span>
+          <!-- 用来存储现在有多少行 -->
           <input type='hidden' id='piParentsTrLastIndex' value="1"/>
+          <!-- 用来存储当前已经添加了多少行，而不是目前有多少行 -->
+          <input type='hidden' id='piParentsCurrentCount' value="1"/>
         </div>
       </div>
       <div class="tab-pane fade" id="profile"></div>

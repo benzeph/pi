@@ -15,6 +15,7 @@ function piParentsFindObj(theObj, theDoc) {
 function piParentsAddRow() {
     var regularExpression = "^[0-9]+(.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
+    var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
     var rowID = parseInt(piParentsTrLastIndex.value);
     var piParentsTable = piParentsFindObj("piParentsTable", document);
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
@@ -38,10 +39,11 @@ function piParentsAddRow() {
     var newDeleteTD = newTR.insertCell(8);
     newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "')\" value='delete'></div>";
     piParentsTrLastIndex.value = (rowID + 1).toString();
+    piParentsCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    calculatePi(piParentsTable.rows.length - 1);
+    calculatePi(Number(piParentsCurrentCount.value));
 }
 
 function reloadValidate(){
@@ -58,17 +60,26 @@ function reloadValidate(){
 
 function calculatePi(rowID){
     if(rowID > 0){
-        var locus = piParentsFindObj("locus_" + (rowID - 1),document);
-        var F1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("F1_" + (rowID - 1),document).value);
-        var F2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("F2_" + (rowID - 1),document).value);
-        var M1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("M1_" + (rowID - 1),document).value);
-        var M2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("M2_" + (rowID - 1),document).value);
-        var C1 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("C1_" + (rowID - 1),document).value);
-        var C2 = getAllete("http://localhost:8080/pi/xml/" + locus.value + ".xml","a" + piParentsFindObj("C2_" + (rowID - 1),document).value);
+        var locus = piParentsFindObj("locus_" + (rowID - 1),document).value;
+        var F1 = piParentsFindObj("F1_" + (rowID - 1),document).value;
+        var F2 = piParentsFindObj("F2_" + (rowID - 1),document).value;
+        var M1 = piParentsFindObj("M1_" + (rowID - 1),document).value;
+        var M2 = piParentsFindObj("M2_" + (rowID - 1),document).value;
+        var C1 = piParentsFindObj("C1_" + (rowID - 1),document).value;
+        var C2 = piParentsFindObj("C2_" + (rowID - 1),document).value;
+        var F1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + F1);
+        var F2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + F2);
+        var M1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M1);
+        var M2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M2);
+        var C1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C1);
+        var C2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C2);
         var pi = 0;
         if(C1==C2){
             if(F1==F2&&F1==C1&&(M1==F1||M2==F1)){
-                pi = 1/C1;
+                pi = 1/C1value;
+            }
+            if(F1!=F2&&(F1==C1||F2==C1)&&(M1==F1||M2==F1)){
+                pi = 1/(2*C1value);
             }
         }
         var PI = piParentsFindObj("PI_" + (rowID - 1),document);
