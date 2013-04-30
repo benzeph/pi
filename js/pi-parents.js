@@ -107,14 +107,23 @@ function calculatePi(rowID){
         }
         var PI = document.getElementById("PI_" + (rowID - 1));
         PI.innerHTML = pi;
+        return(pi);
     }
 }
 
 function calculate(){
-     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
-     for (var i = 2; i <= Number(piParentsCurrentCount.value) + 1; i++) {
-        calculatePi(i);
-     };
+    var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
+    var cpi = 1;
+    var rcp = 0;
+    for (var i = 2; i <= Number(piParentsCurrentCount.value) + 1; i++) {
+        cpi = cpi * Number(calculatePi(i));
+    };
+    rcp = cpi/(1+cpi);
+    var CPI = document.getElementById("CPI");
+    CPI.innerHTML = cpi;
+    var RCP = document.getElementById("RCP");
+    RCP.innerHTML = rcp
+    alert("计算完毕");
 }
 
 function piParentsDeleteRow(rowid) {
