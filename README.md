@@ -2,6 +2,21 @@
 1.formula
 2.friendly UI
 3.database-xml
+##1.公式
+
+**1.共显性遗传标记计算父权指数**  
+孩子	母亲	AF	PI  
+q	pq	q	1/q  
+q	q	q	1/q  
+q	pq	qr|pq	1/2q  
+q	q	qr	1/2q  
+pq	pq	q	1/(p+q)  
+pq	p|pr	q	1/q  
+pq	pq	pq	1/(p+q)  
+pq	pq	qr	1/(2p+2q)  
+pq	p|pr|ps	qr|pq	1/2q  
+
+
 ##2.界面
   为了简化开发，使用Bootstrap框架做UI
 ##3.数据库
