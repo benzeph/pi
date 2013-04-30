@@ -35,7 +35,7 @@ function piParentsAddRow() {
     var newC2 = newTR.insertCell(6);
     newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newPi = newTR.insertCell(7);
-    newPi.innerHTML = "<input  class='input-mini uneditable-input' id='PI_" + rowID + "' type='text'  />";
+    newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
     newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "')\" value='delete'></div>";
     piParentsTrLastIndex.value = (rowID + 1).toString();
@@ -106,8 +106,8 @@ function calculatePi(rowID){
                 }
             }
         }
-        var PI = piParentsFindObj("PI_" + (rowID - 1),document);
-        PI.value = pi;
+        var PI = document.getElementById("PI_" + (rowID - 1));
+        PI.innerHTML = pi;
     }
 }
 
