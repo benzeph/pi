@@ -208,9 +208,15 @@ function piParentsClearAllRows() {
         piParentsTrLastIndex.value = "1";
         var linesCount = document.getElementById("piParentsRowCount");
         linesCount.innerHTML = (piParentsTable.rows.length - 1);
+        clearAllCookies();
     }
 }
-
+function clearAllCookies(){
+    var linesCount = getCookie("linesCount");
+    for (var i = 1; i <= Number(linesCount); i++) {
+        delCookie("linesCount");
+    };
+}
 function getAllete(xmlfile,allete){
     if (window.XMLHttpRequest){
         xmlhttp = new XMLHttpRequest();
