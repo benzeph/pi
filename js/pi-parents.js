@@ -252,6 +252,7 @@ function clearAllCookies(){
     };
     delCookie("linesCount");
 }
+
 function getAllete(xmlfile,allete){
     if (window.XMLHttpRequest){
         xmlhttp = new XMLHttpRequest();
