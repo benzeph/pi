@@ -12,8 +12,46 @@ function piParentsFindObj(theObj, theDoc) {
     return foundObj;
 }
 function loadTableFromCookie(){
-   
+    var linesCount = getCookie("linesCount");
+    for (var i = 1; i <= Number(linesCount); i++) {
+        piParentsLoadRow();
+    };
 }
+
+function piParentsLoadRow() {
+    var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
+    var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
+    var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
+    var rowID = parseInt(piParentsTrLastIndex.value);
+    var piParentsTable = piParentsFindObj("piParentsTable", document);
+    var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
+    newTR.id = "row" + rowID;
+    var newAllele = newTR.insertCell(0);
+    newAllele.innerHTML = "<select id='locus_" + rowID + "'class='span2'><option value=\"D3S1358\">D3S1358</option><option value=\"saab\">Saab</option><option value=\"fiat\">Fiat</option><option value=\"audi\">Audi</option></select>";
+    var newAF1 = newTR.insertCell(1);
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newAF2 = newTR.insertCell(2);
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newM1 = newTR.insertCell(3);
+    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newM2 = newTR.insertCell(4);
+    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newC1 = newTR.insertCell(5);
+    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newC2 = newTR.insertCell(6);
+    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    var newPi = newTR.insertCell(7);
+    newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
+    var newDeleteTD = newTR.insertCell(8);
+    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "')\" value='delete'></div>";
+    piParentsTrLastIndex.value = (rowID + 1).toString();
+    piParentsCurrentCount.value = (rowID).toString();
+    var linesCount = document.getElementById("piParentsRowCount");
+    linesCount.innerHTML = (piParentsTable.rows.length - 1);
+    reloadValidate();
+
+}
+
 function piParentsAddRow() {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
@@ -45,7 +83,8 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    saveDataIntoCookie(rowID,1);
+    saveDataIntoCookie(rowID , 1);
+    addCookie("linesCount",Number(piParentsCurrentCount.value),1);
 }
 
 function reloadValidate(){
