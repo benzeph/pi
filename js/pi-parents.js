@@ -13,12 +13,23 @@ function piParentsFindObj(theObj, theDoc) {
 }
 function loadTableFromCookie(){
     var linesCount = getCookie("linesCount");
-    for (var i = 1; i <= Number(linesCount); i++) {
-        piParentsLoadRow();
+    for (var i = 1; i < Number(linesCount); i++) {
+        var locus = getCookie("locus_"+i);
+        var AF1 = getCookie("AF1_"+i);
+        var AF2 = getCookie("AF2_"+i);
+        var M1 = getCookie("M1_"+i);
+        var M2 = getCookie("M2_"+i);
+        var C1 = getCookie("C1_"+i);
+        var C2 = getCookie("C2_"+i);
+        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+           alert("空");
+        }else{
+             piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2);   
+        }
     };
 }
 
-function piParentsLoadRow() {
+function piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2) {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
@@ -29,17 +40,17 @@ function piParentsLoadRow() {
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML = "<select id='locus_" + rowID + "'class='span2'><option value=\"D3S1358\">D3S1358</option><option value=\"saab\">Saab</option><option value=\"fiat\">Fiat</option><option value=\"audi\">Audi</option></select>";
     var newAF1 = newTR.insertCell(1);
-    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
-    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' value='" + AF2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM1 = newTR.insertCell(3);
-    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' value='" + M1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM2 = newTR.insertCell(4);
-    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' value='" + M2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC1 = newTR.insertCell(5);
-    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' value='" + C1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC2 = newTR.insertCell(6);
-    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' value='" + C2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
@@ -49,7 +60,6 @@ function piParentsLoadRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-
 }
 
 function piParentsAddRow() {
@@ -77,7 +87,7 @@ function piParentsAddRow() {
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
-    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "')\" value='delete'></div>";
+    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\" value='delete'></div>";
     piParentsTrLastIndex.value = (rowID + 1).toString();
     piParentsCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piParentsRowCount");
@@ -184,17 +194,29 @@ function saveDataIntoCookie(rowID,hours){
         addCookie("M1_" + id,M1,hours);
         addCookie("M2_" + id,M2,hours);
         addCookie("C1_" + id,C1,hours);
-        addCookie("C1_" + id,C2,hours);
+        addCookie("C2_" + id,C2,hours);
     }
 }
 
-function piParentsDeleteRow(rowid) {
+function piParentsDeleteRow(rowID,id) {
     var piParentsTable = piParentsFindObj("piParentsTable", document);
-    var row = piParentsFindObj(rowid, document);
+    var row = piParentsFindObj(rowID, document);
     var rowIndex = row.rowIndex;
     piParentsTable.deleteRow(rowIndex);
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
+    deleteRowCookie(Number(id));
+}
+
+function deleteRowCookie(rowID){
+    delCookie("locus_"+rowID);
+    delCookie("AF1_"+rowID);
+    delCookie("AF2_"+rowID);
+    delCookie("M1_"+rowID);
+    delCookie("M2_"+rowID);
+    delCookie("C1_"+rowID);
+    delCookie("C2_"+rowID);
+    alert("delete");
 }
 
 function piParentsClearAllRows() {
@@ -211,11 +233,13 @@ function piParentsClearAllRows() {
         clearAllCookies();
     }
 }
+
 function clearAllCookies(){
     var linesCount = getCookie("linesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        delCookie("linesCount");
+        deleteRowCookie(i);
     };
+    delCookie("linesCount");
 }
 function getAllete(xmlfile,allete){
     if (window.XMLHttpRequest){
