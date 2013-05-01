@@ -30,7 +30,7 @@ function loadTableFromCookie(){
 }
 
 function generateSelectCode(rowID){
-    var code ="<select id='locus_" + rowID + "'class='span2'>"+
+    var code ="<select id='locus_" + rowID + "' onclick='saveDataIntoCookie(" + rowID + ", 1)' class='span2'>"+
     "<option value=\"D3S1358\">D3S1358</option>"+
     "<option value=\"saab\">Saab</option>"+
     "<option value=\"fiat\">Fiat</option>"+
@@ -167,17 +167,16 @@ function calculatePi(rowID){
             }
         }
     }
-    var PI = document.getElementById("PI_" + (rowID - 1));
+    var PI = piParentsFindObj("PI_" + rowID,document);
     PI.innerHTML = pi;
     return(pi);
 }
 
 function calculate(){
-    var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
     var cpi = 1;
     var rcp = 0;
     var linesCount = getCookie("linesCount");
-    for (var i = 1; i < Number(linesCount); i++) {
+    for (var i = 1; i <= Number(linesCount); i++) {
         var locus = getCookie("locus_"+i);
         var AF1 = getCookie("AF1_"+i);
         var AF2 = getCookie("AF2_"+i);
@@ -248,6 +247,10 @@ function piParentsClearAllRows() {
         var linesCount = document.getElementById("piParentsRowCount");
         linesCount.innerHTML = (piParentsTable.rows.length - 1);
         clearAllCookies();
+        var CPI = document.getElementById("CPI");
+        CPI.innerHTML = 0;
+        var RCP = document.getElementById("RCP");
+        RCP.innerHTML = 0
     }
 }
 
