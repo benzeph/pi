@@ -22,7 +22,7 @@ function loadTableFromCookie(){
         var C1 = getCookie("C1_"+i);
         var C2 = getCookie("C2_"+i);
         if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
-           alert("空");
+
         }else{
              piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2);   
         }
@@ -54,7 +54,7 @@ function piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2) {
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
-    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "')\" value='delete'></div>";
+    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\" value='delete'></div>";
     piParentsTrLastIndex.value = (rowID + 1).toString();
     piParentsCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piParentsRowCount");
@@ -216,7 +216,6 @@ function deleteRowCookie(rowID){
     delCookie("M2_"+rowID);
     delCookie("C1_"+rowID);
     delCookie("C2_"+rowID);
-    alert("delete");
 }
 
 function piParentsClearAllRows() {
