@@ -24,16 +24,15 @@ function loadTableFromCookie(){
         if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
         }else{
-             piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2);   
+             piParentsLoadRow(i,locus,AF1,AF2,M1,M2,C1,C2);   
         }
     };
 }
 
-function piParentsLoadRow(locus,AF1,AF2,M1,M2,C1,C2) {
+function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
-    var rowID = parseInt(piParentsTrLastIndex.value);
     var piParentsTable = piParentsFindObj("piParentsTable", document);
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
     newTR.id = "row" + rowID;
