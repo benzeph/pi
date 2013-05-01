@@ -169,8 +169,8 @@ function calculatePi(rowID){
         }
     }
     var PI = piParentsFindObj("PI_" + rowID,document);
-    PI.innerHTML = pi;
-    addCookie("PI_"+rowID , pi , 1);
+    PI.innerHTML = pi.toFixed(3);
+    addCookie("PI_"+rowID , pi.toFixed(3) , 1);
     return(pi);
 }
 
@@ -194,11 +194,11 @@ function calculate(){
     };
     rcp = cpi/(1+cpi);
     var CPI = document.getElementById("CPI");
-    CPI.innerHTML = cpi;
+    CPI.innerHTML = cpi.toFixed(4);
     var RCP = document.getElementById("RCP");
-    RCP.innerHTML = rcp
-    addCookie("CPI",cpi,1);
-    addCookie("RCP",rcp,1);
+    RCP.innerHTML = rcp.toFixed(4);
+    addCookie("CPI",cpi.toFixed(4),1);
+    addCookie("RCP",rcp.toFixed(4),1);
     var piParentsRowCount = document.getElementById("piParentsRowCount");
     addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
     alert("计算完毕");
