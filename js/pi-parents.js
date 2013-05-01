@@ -11,7 +11,9 @@ function piParentsFindObj(theObj, theDoc) {
     if (!foundObj && document.getElementById) foundObj = document.getElementById(theObj);
     return foundObj;
 }
-
+function loadTableFromCookie(){
+   
+}
 function piParentsAddRow() {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
@@ -43,6 +45,7 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
+    saveDataIntoCookie(rowID,1);
 }
 
 function reloadValidate(){
@@ -126,6 +129,26 @@ function calculate(){
     alert("计算完毕");
 }
 
+function saveDataIntoCookie(rowID,hours){
+    if(rowID>0){
+        var id = rowID - 1;
+        var locus = piParentsFindObj("locus_" + id,document).value;
+        var AF1 = piParentsFindObj("AF1_" + id,document).value;
+        var AF2 = piParentsFindObj("AF2_" + id,document).value;
+        var M1 = piParentsFindObj("M1_" + id,document).value;
+        var M2 = piParentsFindObj("M2_" + id,document).value;
+        var C1 = piParentsFindObj("C1_" + id,document).value;
+        var C2 = piParentsFindObj("C2_" + id,document).value;
+        addCookie("locus_" + id,locus,hours);
+        addCookie("AF1_" + id,AF1,hours);
+        addCookie("AF2_" + id,AF2,hours);
+        addCookie("M1_" + id,M1,hours);
+        addCookie("M2_" + id,M2,hours);
+        addCookie("C1_" + id,C1,hours);
+        addCookie("C1_" + id,C2,hours);
+    }
+}
+
 function piParentsDeleteRow(rowid) {
     var piParentsTable = piParentsFindObj("piParentsTable", document);
     var row = piParentsFindObj(rowid, document);
@@ -159,4 +182,52 @@ function getAllete(xmlfile,allete){
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
     return(xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue);
+} 
+
+function cookie(name){    
+   var cookieArray=document.cookie.split("; "); //得到分割的cookie名值对    
+   var cookie=new Object();    
+   for (var i=0;i<cookieArray.length;i++){    
+      var arr=cookieArray[i].split("=");       //将名和值分开    
+      if(arr[0]==name)return unescape(arr[1]); //如果是指定的cookie，则返回它的值    
+   } 
+   return ""; 
+} 
+
+function getCookie(objName){//获取指定名称的cookie的值
+    var arrStr = document.cookie.split("; ");
+    for(var i = 0;i < arrStr.length;i ++){
+        var temp = arrStr[i].split("=");
+        if(temp[0] == objName) return unescape(temp[1]);
+   } 
+}
+
+function addCookie(objName,objValue,objHours){      //添加cookie
+    var str = objName + "=" + escape(objValue);
+    if(objHours > 0){                               //为时不设定过期时间，浏览器关闭时cookie自动消失
+        var date = new Date();
+        var ms = objHours*3600*1000;
+        date.setTime(date.getTime() + ms);
+        str += "; expires=" + date.toGMTString();
+   }
+   document.cookie = str;
+}
+
+function SetCookie(name,value){
+    var Days = 30; //此 cookie 将被保存 30 天
+    var exp = new Date();    //new Date("December 31, 9998");
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+    if(arr != null) return unescape(arr[2]); return null;
+}
+
+function delCookie(name){
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
