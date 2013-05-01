@@ -40,7 +40,7 @@
     var date = document.getElementById("date");
     date.innerHTML = "日期："+year+"年"+(month+1)+"月"+day+"日";
 
-    generateTable("xxx","12","12","13","13","14","14","1212");
+    loadTableFromCookie();
 
 	function getCookie(objName){
 	    var arrStr = document.cookie.split("; ");
@@ -49,6 +49,25 @@
 			if(temp[0] == objName) return unescape(temp[1]);
 	    } 
 	}
+
+	function loadTableFromCookie(){
+		var linesCount = getCookie("linesCount");
+		for (var i = 1; i <= Number(linesCount); i++) {
+			var locus = getCookie("locus_"+i);
+			var AF1 = getCookie("AF1_"+i);
+			var AF2 = getCookie("AF2_"+i);
+			var M1 = getCookie("M1_"+i);
+			var M2 = getCookie("M2_"+i);
+			var C1 = getCookie("C1_"+i);
+			var C2 = getCookie("C2_"+i);
+			var pi = getCookie("PI_"+i);
+			if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+
+			}else{
+			     generateTable(locus,AF1,AF2,M1,M2,C1,C2,pi);   
+			}
+		};
+    }
 
 	function generateTable(locus,AF1,AF2,M1,M2,C1,C2,PI) {
 		var piParentsTable = piParentsFindObj("table", document);

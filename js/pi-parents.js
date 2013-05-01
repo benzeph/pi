@@ -11,8 +11,10 @@ function piParentsFindObj(theObj, theDoc) {
     if (!foundObj && document.getElementById) foundObj = document.getElementById(theObj);
     return foundObj;
 }
+
 function loadTableFromCookie(){
     var linesCount = getCookie("linesCount");
+    alert(linesCount);
     for (var i = 1; i <= Number(linesCount); i++) {
         var locus = getCookie("locus_"+i);
         var AF1 = getCookie("AF1_"+i);
@@ -169,6 +171,7 @@ function calculatePi(rowID){
     }
     var PI = piParentsFindObj("PI_" + rowID,document);
     PI.innerHTML = pi;
+    addCookie("PI_"+rowID , pi , 1);
     return(pi);
 }
 
