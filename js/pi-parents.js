@@ -64,6 +64,8 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
     newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\" value='delete'></div>";
+    var selectLocas = piParentsFindObj("locus_" + rowID);
+    selectLocas.selectedIndex = locus;
     piParentsTrLastIndex.value = (rowID + 1).toString();
     piParentsCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piParentsRowCount");
@@ -191,7 +193,7 @@ function calculate(){
 function saveDataIntoCookie(rowID,hours){
     if(rowID>0){
         var id = rowID - 1;
-        var locus = piParentsFindObj("locus_" + id,document).value;
+        var locus = piParentsFindObj("locus_" + id,document).selectedIndex;
         var AF1 = piParentsFindObj("AF1_" + id,document).value;
         var AF2 = piParentsFindObj("AF2_" + id,document).value;
         var M1 = piParentsFindObj("M1_" + id,document).value;
