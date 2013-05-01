@@ -16,7 +16,8 @@
 	<div style="text-align:center;">
 		<h1>共显性遗传标记计算父权指数</h1>
 	</div>
-	<div style="margin-left:5%;" id = "date"></div>
+	<div id = "date"></div>
+	<hr>
 	<div>
 		<table id="table">
 			<thead>
@@ -31,6 +32,15 @@
 			</thead>
 			<tbody></tbody>
 		</table>
+	</div>
+	<hr>
+	<div style="text-align:center; margin-top:5px;">
+		<span><b>基因座的个数:</b></span>
+        <span id="piParentsRowCount" style="margin-right:20px;">0</span>
+        <span><b>CPI:</b></span>
+        <span id="CPI" style="margin-right:20px;">0</span>
+        <span><b>RCP:</b></span>
+        <span id="RCP" style="margin-right:20px;">0</span>
 	</div>
 	<script type="text/javascript">
 	var myDate = new Date();
@@ -53,7 +63,7 @@
 	function loadTableFromCookie(){
 		var linesCount = getCookie("linesCount");
 		for (var i = 1; i <= Number(linesCount); i++) {
-			var locus = getCookie("locus_"+i);
+			var locus = getCookie("locusValue_"+i);
 			var AF1 = getCookie("AF1_"+i);
 			var AF2 = getCookie("AF2_"+i);
 			var M1 = getCookie("M1_"+i);
@@ -67,6 +77,15 @@
 			     generateTable(locus,AF1,AF2,M1,M2,C1,C2,pi);   
 			}
 		};
+		var piParentsRowCount = getCookie("piParentsRowCount");
+		var cpi = getCookie("CPI");
+		var rcp = getCookie("RCP");
+		var CPI = document.getElementById("CPI");
+	    CPI.innerHTML = cpi;
+	    var RCP = document.getElementById("RCP");
+	    RCP.innerHTML = rcp
+	    var PIParentsRowCount = document.getElementById("piParentsRowCount");
+	    PIParentsRowCount.innerHTML = piParentsRowCount;
     }
 
 	function generateTable(locus,AF1,AF2,M1,M2,C1,C2,PI) {

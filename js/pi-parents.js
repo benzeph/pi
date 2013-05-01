@@ -197,11 +197,16 @@ function calculate(){
     CPI.innerHTML = cpi;
     var RCP = document.getElementById("RCP");
     RCP.innerHTML = rcp
+    addCookie("CPI",cpi,1);
+    addCookie("RCP",rcp,1);
+    var piParentsRowCount = document.getElementById("piParentsRowCount");
+    addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
     alert("计算完毕");
 }
 
 function saveDataIntoCookie(rowID,hours){
     var locus = piParentsFindObj("locus_" + rowID,document).selectedIndex;
+    var locusValue = piParentsFindObj("locus_" + rowID,document).value;
     var AF1 = piParentsFindObj("AF1_" + rowID,document).value;
     var AF2 = piParentsFindObj("AF2_" + rowID,document).value;
     var M1 = piParentsFindObj("M1_" + rowID,document).value;
@@ -209,6 +214,7 @@ function saveDataIntoCookie(rowID,hours){
     var C1 = piParentsFindObj("C1_" + rowID,document).value;
     var C2 = piParentsFindObj("C2_" + rowID,document).value;
     addCookie("locus_" + rowID,locus,hours);
+    addCookie("locusValue_" + rowID,locusValue,hours);
     addCookie("AF1_" + rowID,AF1,hours);
     addCookie("AF2_" + rowID,AF2,hours);
     addCookie("M1_" + rowID,M1,hours);
