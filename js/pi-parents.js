@@ -13,7 +13,7 @@ function piParentsFindObj(theObj, theDoc) {
 }
 function loadTableFromCookie(){
     var linesCount = getCookie("linesCount");
-    for (var i = 1; i < Number(linesCount); i++) {
+    for (var i = 1; i <= Number(linesCount); i++) {
         var locus = getCookie("locus_"+i);
         var AF1 = getCookie("AF1_"+i);
         var AF2 = getCookie("AF2_"+i);
@@ -49,17 +49,17 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML =  generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
-    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
-    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' value='" + AF2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + AF2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM1 = newTR.insertCell(3);
-    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' value='" + M1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + M1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM2 = newTR.insertCell(4);
-    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' value='" + M2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + M2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC1 = newTR.insertCell(5);
-    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' value='" + C1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC2 = newTR.insertCell(6);
-    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' value='" + C2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
@@ -85,17 +85,17 @@ function piParentsAddRow() {
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML =  generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
-    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
-    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)' id='AF2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM1 = newTR.insertCell(3);
-    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM1.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)' id='M1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newM2 = newTR.insertCell(4);
-    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='M2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newM2.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)' id='M2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC1 = newTR.insertCell(5);
-    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC1.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)' id='C1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC2 = newTR.insertCell(6);
-    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='C2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC2.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)' id='C2_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
@@ -105,7 +105,6 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    saveDataIntoCookie(rowID , 1);
     addCookie("linesCount",Number(piParentsCurrentCount.value),1);
 }
 
@@ -122,65 +121,75 @@ function reloadValidate(){
 }
 
 function calculatePi(rowID){
-    if(rowID > 0){
-        var locus = piParentsFindObj("locus_" + (rowID - 1),document).value;
-        var AF1 = piParentsFindObj("AF1_" + (rowID - 1),document).value;
-        var AF2 = piParentsFindObj("AF2_" + (rowID - 1),document).value;
-        var M1 = piParentsFindObj("M1_" + (rowID - 1),document).value;
-        var M2 = piParentsFindObj("M2_" + (rowID - 1),document).value;
-        var C1 = piParentsFindObj("C1_" + (rowID - 1),document).value;
-        var C2 = piParentsFindObj("C2_" + (rowID - 1),document).value;
-        var AF1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF1);
-        var AF2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF2);
-        var M1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M1);
-        var M2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M2);
-        var C1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C1);
-        var C2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C2);
-        var pi = 0;
-        if(C1==C2){
-            if(AF1==AF2&&AF1==C1&&(M1==AF1||M2==AF1)){
-                pi = 1/Number(C1value);
+    var locus = piParentsFindObj("locus_" + (rowID),document).value;
+    var AF1 = piParentsFindObj("AF1_" + (rowID),document).value;
+    var AF2 = piParentsFindObj("AF2_" + (rowID),document).value;
+    var M1 = piParentsFindObj("M1_" + (rowID),document).value;
+    var M2 = piParentsFindObj("M2_" + (rowID),document).value;
+    var C1 = piParentsFindObj("C1_" + (rowID),document).value;
+    var C2 = piParentsFindObj("C2_" + (rowID),document).value;
+    var AF1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF1);
+    var AF2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF2);
+    var M1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M1);
+    var M2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M2);
+    var C1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C1);
+    var C2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C2);
+    var pi = 0;
+    if(C1==C2){
+        if(AF1==AF2&&AF1==C1&&(M1==AF1||M2==AF1)){
+            pi = 1/Number(C1value);
+        }
+        if(AF1!=AF2&&(AF1==C1||AF2==C1)&&(M1==AF1||M2==AF1)){
+            pi = 1/(2*Number(C1value));
+        }
+    }else if(C1!=C2){
+        if(AF1==AF2&&(AF1==C1||AF1==C2)){
+            if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
+                pi=1/(Number(C1value)+Number(C2value));
+            }else if(M1==M2&&(M1==C1||M1==C2)){
+                pi=1/Number(AF1value);
+            }else if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
+                pi=1/Number(AF1value);
             }
-            if(AF1!=AF2&&(AF1==C1||AF2==C1)&&(M1==AF1||M2==AF1)){
-                pi = 1/(2*Number(C1value));
+        }else if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
+            if(AF1!=AF2&&(AF1==C1||AF1==C2)&&(AF2==C1||AF2==C2)){
+                pi=1/(Number(C1value)+Number(C2value));
+            }else if(AF1!=AF2&&(C1==AF1||C1==AF2||C2==AF1||C2==AF2)&&((AF1!=C1&&AF1!=C2)||(AF2!=C1&&AF2!=C2))){
+                pi=1/(2*Number(C1value)+2*Number(C2value));
             }
-        }else if(C1!=C2){
-            if(AF1==AF2&&(AF1==C1||AF1==C2)){
-                if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                    pi=1/(Number(C1value)+Number(C2value));
-                }else if(M1==M2&&(M1==C1||M1==C2)){
-                    pi=1/Number(AF1value);
-                }else if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
-                    pi=1/Number(AF1value);
-                }
-            }else if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                if(AF1!=AF2&&(AF1==C1||AF1==C2)&&(AF2==C1||AF2==C2)){
-                    pi=1/(Number(C1value)+Number(C2value));
-                }else if(AF1!=AF2&&(C1==AF1||C1==AF2||C2==AF1||C2==AF2)&&((AF1!=C1&&AF1!=C2)||(AF2!=C1&&AF2!=C2))){
-                    pi=1/(2*Number(C1value)+2*Number(C2value));
-                }
-            }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
-                if(AF1!=AF2&&(AF1==C1||AF1==C2||AF2==C1||AF2==C2)){
-                    if(C1==M1||C1==M2){
-                        pi=1/(2*Number(C2value));
-                    }else if(C2==M1||C2==M2){
-                        pi=1/(2*Number(C1value));
-                    }
+        }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
+            if(AF1!=AF2&&(AF1==C1||AF1==C2||AF2==C1||AF2==C2)){
+                if(C1==M1||C1==M2){
+                    pi=1/(2*Number(C2value));
+                }else if(C2==M1||C2==M2){
+                    pi=1/(2*Number(C1value));
                 }
             }
         }
-        var PI = document.getElementById("PI_" + (rowID - 1));
-        PI.innerHTML = pi;
-        return(pi);
     }
+    var PI = document.getElementById("PI_" + (rowID - 1));
+    PI.innerHTML = pi;
+    return(pi);
 }
 
 function calculate(){
     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
     var cpi = 1;
     var rcp = 0;
-    for (var i = 2; i <= Number(piParentsCurrentCount.value) + 1; i++) {
-        cpi = cpi * Number(calculatePi(i));
+    var linesCount = getCookie("linesCount");
+    for (var i = 1; i < Number(linesCount); i++) {
+        var locus = getCookie("locus_"+i);
+        var AF1 = getCookie("AF1_"+i);
+        var AF2 = getCookie("AF2_"+i);
+        var M1 = getCookie("M1_"+i);
+        var M2 = getCookie("M2_"+i);
+        var C1 = getCookie("C1_"+i);
+        var C2 = getCookie("C2_"+i);
+        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+
+        }else{
+             cpi = cpi * Number(calculatePi(i));
+        }
     };
     rcp = cpi/(1+cpi);
     var CPI = document.getElementById("CPI");
@@ -191,23 +200,20 @@ function calculate(){
 }
 
 function saveDataIntoCookie(rowID,hours){
-    if(rowID>0){
-        var id = rowID - 1;
-        var locus = piParentsFindObj("locus_" + id,document).selectedIndex;
-        var AF1 = piParentsFindObj("AF1_" + id,document).value;
-        var AF2 = piParentsFindObj("AF2_" + id,document).value;
-        var M1 = piParentsFindObj("M1_" + id,document).value;
-        var M2 = piParentsFindObj("M2_" + id,document).value;
-        var C1 = piParentsFindObj("C1_" + id,document).value;
-        var C2 = piParentsFindObj("C2_" + id,document).value;
-        addCookie("locus_" + id,locus,hours);
-        addCookie("AF1_" + id,AF1,hours);
-        addCookie("AF2_" + id,AF2,hours);
-        addCookie("M1_" + id,M1,hours);
-        addCookie("M2_" + id,M2,hours);
-        addCookie("C1_" + id,C1,hours);
-        addCookie("C2_" + id,C2,hours);
-    }
+    var locus = piParentsFindObj("locus_" + rowID,document).selectedIndex;
+    var AF1 = piParentsFindObj("AF1_" + rowID,document).value;
+    var AF2 = piParentsFindObj("AF2_" + rowID,document).value;
+    var M1 = piParentsFindObj("M1_" + rowID,document).value;
+    var M2 = piParentsFindObj("M2_" + rowID,document).value;
+    var C1 = piParentsFindObj("C1_" + rowID,document).value;
+    var C2 = piParentsFindObj("C2_" + rowID,document).value;
+    addCookie("locus_" + rowID,locus,hours);
+    addCookie("AF1_" + rowID,AF1,hours);
+    addCookie("AF2_" + rowID,AF2,hours);
+    addCookie("M1_" + rowID,M1,hours);
+    addCookie("M2_" + rowID,M2,hours);
+    addCookie("C1_" + rowID,C1,hours);
+    addCookie("C2_" + rowID,C2,hours);
 }
 
 function piParentsDeleteRow(rowID,id) {
