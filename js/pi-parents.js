@@ -13,7 +13,7 @@ function piParentsFindObj(theObj, theDoc) {
 }
 
 function piParentsAddRow() {
-    var regularExpression = "^[0-9]+(.[0-9]+)?$";
+    var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
     var rowID = parseInt(piParentsTrLastIndex.value);
