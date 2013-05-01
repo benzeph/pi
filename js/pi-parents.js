@@ -14,7 +14,6 @@ function piParentsFindObj(theObj, theDoc) {
 
 function loadTableFromCookie(){
     var linesCount = getCookie("linesCount");
-    alert(linesCount);
     for (var i = 1; i <= Number(linesCount); i++) {
         var locus = getCookie("locus_"+i);
         var AF1 = getCookie("AF1_"+i);
