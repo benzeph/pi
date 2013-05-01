@@ -29,6 +29,16 @@ function loadTableFromCookie(){
     };
 }
 
+function generateSelectCode(rowID){
+    var code ="<select id='locus_" + rowID + "'class='span2'>"+
+    "<option value=\"D3S1358\">D3S1358</option>"+
+    "<option value=\"saab\">Saab</option>"+
+    "<option value=\"fiat\">Fiat</option>"+
+    "<option value=\"audi\">Audi</option>"+
+    "</select>";
+    return(code);
+}
+
 function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
@@ -37,7 +47,7 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
-    newAllele.innerHTML = "<select id='locus_" + rowID + "'class='span2'><option value=\"D3S1358\">D3S1358</option><option value=\"saab\">Saab</option><option value=\"fiat\">Fiat</option><option value=\"audi\">Audi</option></select>";
+    newAllele.innerHTML =  generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
     newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
@@ -61,6 +71,7 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     reloadValidate();
 }
 
+
 function piParentsAddRow() {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
@@ -70,7 +81,7 @@ function piParentsAddRow() {
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
-    newAllele.innerHTML = "<select id='locus_" + rowID + "'class='span2'><option value=\"D3S1358\">D3S1358</option><option value=\"saab\">Saab</option><option value=\"fiat\">Fiat</option><option value=\"audi\">Audi</option></select>";
+    newAllele.innerHTML =  generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
     newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
