@@ -6,92 +6,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen"></head>
   <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 60px;
+      html,body {
+        height: 100%;
       }
 
-      /* Custom container */
-      .container {
-        margin: 0 auto;
-        max-width: 960px;
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -60px;
       }
-      .container > hr {
-        margin: 60px 0;
+
+      #push,#footer {
+        height: 60px;
+      }
+
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .container {
+        width: auto;
+        max-width: 1000px;
       }
       
-      /* Customize the navbar links to be fill the entire space of the .navbar */
-      .navbar .navbar-inner {
-        padding: 0;
-      }
-      .navbar .nav {
-        margin: 0;
-        display: table;
-        width: 100%;
-      }
-      .navbar .nav li {
-        display: table-cell;
-        width: 1%;
-        float: none;
-      }
-      .navbar .nav li a {
-        font-weight: bold;
-        text-align: center;
-        border-left: 1px solid rgba(255,255,255,.75);
-        border-right: 1px solid rgba(0,0,0,.1);
-      }
-      .navbar .nav li:first-child a {
-        border-left: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      .navbar .nav li:last-child a {
-        border-right: 0;
-        border-radius: 0 3px 3px 0;
+      .container .credit {
+        margin: 20px 0;
       }
     </style>
-<body>
-  <div class="container">
-    <div class="masthead">
-      <h3 class="text-error">Paternity Testing</h3>
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
-            <ul class="nav">
+<body  onload="loadTableFromCookie()">
+  <div id="wrap">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="../index.html">亲子鉴定</a>
+          <div class="nav-collapse collapse">
+              <ul class="nav">
               <li >
                 <a href="../index.html">首页</a>
               </li>
-              <li>
-                <a href="paternity-index.html">父权指数计算</a>
-              </li>
-              <li>
-                <a href="Services.html">项目2</a>
-              </li>
-              <li >
-                <a href="Downloads.html">项目3</a>
-              </li>
-              <li>
-                <a href="About.html">项目4</a>
-              </li>
-              <li class="active">
-                <a href="Contact.html">项目5</a>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  功能 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                 <li>
+                   <a href="pi.html">父权指数</a>
+                 </li>
+                 <li>
+                   <a href="ito.html">血缘关系</a>
+                 </li>
+                 <li class="divider"></li>
+                 <li>
+                   <a href="rules.html">计算规则</a>
+                 </li>
+                 <li>
+                   <a href="help.html">使用方法</a>
+                 </li>
+                 <li>
+                   <a href="about.html">关于项目</a>
+                 </li>
+                </ul>
               </li>
             </ul>
           </div>
-        </div>
+          <!--/.nav-collapse --> </div>
       </div>
     </div>
-    <div class="footer">
-      <hr>
-     <p>
-        &copy; <a href="http://github.com/benzeph" target="_blank">BenZeph</a> 2013 | Paternity Testing采用
-        <a href="http://twitter.github.io/bootstrap/index.html" target="_blank">Bootstrap</a>
-        框架开发，部署在
-        <a href="http://pages.github.com/" target="_blank">Github Page</a>
+    <div class="container">
+     
+    </div>
+    <div id="push"></div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <p class="credit">
+        亲子鉴定是一个开源的web项目，它基于
+        <a href="http://twitter.github.io/bootstrap/index.html" target = "_blank">Bootstrap框架</a>
+        开发，部署在
+        <a href="http://pages.github.com/" target = "_blank">Github Page</a>
+        ，由
+        <a href="http://github.com/benzeph" target = "_blank">BenZeph</a>
+        完成
       </p>
     </div>
   </div>
-  <script src="../js/jquery.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../js/ito.js"></script>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-validate.min.js"></script>
 </body>
 </html>
