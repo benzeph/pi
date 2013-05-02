@@ -79,11 +79,33 @@
           </div>
         </div>
       </div>
+      <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="hero-unit">
+              <p>
+                <a class="btn btn-primary btn-large">了解更多</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
     </div>
     <div class="footer">
       <hr>
-     <p>
-        &copy; <a href="http://github.com/benzeph" target="_blank">BenZeph</a> 2013 | Paternity Testing采用
+      <p>
+        &copy;
+        <a href="http://github.com/benzeph" target="_blank">BenZeph</a>
+        2013 | Paternity Testing采用
         <a href="http://twitter.github.io/bootstrap/index.html" target="_blank">Bootstrap</a>
         框架开发，部署在
         <a href="http://pages.github.com/" target="_blank">Github Page</a>
@@ -92,6 +114,7 @@
   </div>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-carousel.js"></script>
   <script type="text/javascript" src="js/ito.js"></script>
 </body>
 </html>
