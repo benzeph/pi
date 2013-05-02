@@ -129,12 +129,12 @@ function calculatePi(rowID){
     var M2 = piParentsFindObj("M2_" + (rowID),document).value;
     var C1 = piParentsFindObj("C1_" + (rowID),document).value;
     var C2 = piParentsFindObj("C2_" + (rowID),document).value;
-    var AF1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF1);
-    var AF2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + AF2);
-    var M1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M1);
-    var M2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + M2);
-    var C1value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C1);
-    var C2value = getAllete("http://localhost:8080/pi/xml/" + locus + ".xml","a" + C2);
+    var AF1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + AF1);
+    var AF2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + AF2);
+    var M1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + M1);
+    var M2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + M2);
+    var C1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C1);
+    var C2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C2);
     var pi = 0;
     if(C1==C2){
         if(AF1==AF2&&AF1==C1&&(M1==AF1||M2==AF1)){
