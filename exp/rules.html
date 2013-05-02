@@ -63,7 +63,7 @@
                   功能 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                 <li class="dropdown-submenu">
+                  <li class="dropdown-submenu">
                     <a tabindex="-1" href="#">父权指数</a>
                     <ul class="dropdown-menu">
                       <li>
@@ -94,7 +94,127 @@
           <!--/.nav-collapse --> </div>
       </div>
     </div>
-    <div class="container"></div>
+    <div class="container">
+      <br>
+      <br>
+      <br>
+      <table class="table table-striped table-bordered">
+        <caption><b class="text-error">共显性遗传标记计算父权指数计算规则</b></caption>
+        <thead>
+          <th style="width:20%;">#</th>
+          <th style="width:20%;">孩子</th>
+          <th style="width:20%;">母亲</th>
+          <th style="width:20%;">AF</th>
+          <th style="width:20%;">PI</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>q</td>
+            <td>pq</td>
+            <td>q</td>
+            <td>1/q</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>pq</td>
+            <td>p 或 pr</td>
+            <td>q</td>
+            <td>1/q</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>q</td>
+            <td>q</td>
+            <td>q</td>
+            <td>1/q</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>pq</td>
+            <td>p 或 pr 或 ps</td>
+            <td>qr 或 pq</td>
+            <td>1/2q</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>q</td>
+            <td>pq</td>
+            <td>qr 或 pq</td>
+            <td>1/2q</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>q</td>
+            <td>q</td>
+            <td>qr</td>
+            <td>1/2q</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>pq</td>
+            <td>pq</td>
+            <td>pq</td>
+            <td>1/(p+q)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>pq</td>
+            <td>pq</td>
+            <td>q</td>
+            <td>1/(p+q)</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>pq</td>
+            <td>pq</td>
+            <td>qr</td>
+            <td>1/(2p+2q)</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped table-bordered">
+        <caption><b class="text-error">没有检测母亲的共显性遗传标记计算父权指数计算规则</b></caption>
+        <thead>
+          <th style="width:25%;">#</th>
+          <th style="width:25%;">孩子</th>
+          <th style="width:25%;">AF</th>
+          <th style="width:25%;">PI</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>q</td>
+            <td>q</td>
+            <td>1/q</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>pq</td>
+            <td>q</td>
+            <td>1/2q</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>q</td>
+            <td>qr</td>
+            <td>1/2q</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>pq</td>
+            <td>pq</td>
+            <td>(p+q)/4pq</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>pq</td>
+            <td>qr</td>
+            <td>1/4q</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div id="push"></div>
   </div>
   <div id="footer">
