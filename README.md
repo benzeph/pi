@@ -1,4 +1,4 @@
-#Calculate Paternity index.
+#Relations(Calculate Paternity index)
 1.formula
 2.friendly UI
 3.database-xml
