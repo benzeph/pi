@@ -127,10 +127,10 @@
         <a class="btn  btn-info" type="button" href="/pi/exp/template/pi-parents-template.html" target="_blank"> <i class="icon-print icon-white"></i>
           打印
         </a>
-        <button class="btn  btn-warning" type="button" onclick="piParentsClearAllRows()" title="清除全部的数据">
+        <a href="#myModal" role="button" class="btn btn-warning" data-toggle="modal">
           <i class="icon-trash  icon-white"></i>
           清除
-        </button>
+        </a>
         <button class="btn btn-primary" type="button" onclick="calculate()">
           <i class="icon-th icon-white"></i>
           计算
@@ -145,6 +145,21 @@
         <input type='hidden' id='piParentsTrLastIndex' value="1"/>
         <!-- 用来存储当前已经添加了多少行，而不是目前有多少行 -->
         <input type='hidden' id='piParentsCurrentCount' value="1"/>
+        <!-- Button to trigger modal -->
+        <!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">提示</h3>
+          </div>
+          <div class="modal-body">
+            <p>是否要清空所有的数据？</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" onclick="piParentsClearAllRows()" data-dismiss="modal">是，清空全部</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">否</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="tab-pane fade" id="profile"></div>
@@ -160,6 +175,7 @@
       </p>
     </div>
   </div>
+  <script type="text/javascript" src="../js/bootstrap-modal.js"></script>
   <script type="text/javascript" src="../js/jquery.js"></script>
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/pi-parents.js"></script>

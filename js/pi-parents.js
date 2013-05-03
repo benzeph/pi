@@ -244,22 +244,20 @@ function deleteRowCookie(rowID){
 }
 
 function piParentsClearAllRows() {
-    if (confirm('你想清楚所有的数据吗 ?')) {
-        var piParentsTable = piParentsFindObj("piParentsTable", document);
-        var piParentsRowCount = piParentsTable.rows.length;
-        for (i = piParentsRowCount - 1; i > 0; i--) {
-            piParentsTable.deleteRow(i);
-        }
-        var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
-        piParentsTrLastIndex.value = "1";
-        var linesCount = document.getElementById("piParentsRowCount");
-        linesCount.innerHTML = (piParentsTable.rows.length - 1);
-        clearAllCookies();
-        var CPI = document.getElementById("CPI");
-        CPI.innerHTML = 0;
-        var RCP = document.getElementById("RCP");
-        RCP.innerHTML = 0
+    var piParentsTable = piParentsFindObj("piParentsTable", document);
+    var piParentsRowCount = piParentsTable.rows.length;
+    for (i = piParentsRowCount - 1; i > 0; i--) {
+        piParentsTable.deleteRow(i);
     }
+    var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
+    piParentsTrLastIndex.value = "1";
+    var linesCount = document.getElementById("piParentsRowCount");
+    linesCount.innerHTML = (piParentsTable.rows.length - 1);
+    clearAllCookies();
+    var CPI = document.getElementById("CPI");
+    CPI.innerHTML = 0;
+    var RCP = document.getElementById("RCP");
+    RCP.innerHTML = 0
 }
 
 function clearAllCookies(){
