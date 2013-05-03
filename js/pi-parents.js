@@ -64,7 +64,7 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
-    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\" value='delete'></div>";
+    newDeleteTD.innerHTML = "<button type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\"><i class='icon-remove icon-white'></i> 删除</button>";
     var selectLocas = piParentsFindObj("locus_" + rowID);
     selectLocas.selectedIndex = locus;
     piParentsTrLastIndex.value = (rowID + 1).toString();
@@ -100,7 +100,7 @@ function piParentsAddRow() {
     var newPi = newTR.insertCell(7);
     newPi.innerHTML = "<span class='input-mini uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(8);
-    newDeleteTD.innerHTML = "<input type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\" value='delete'></div>";
+    newDeleteTD.innerHTML = "<button type='button' class='btn  btn-small  btn-danger' onclick=\"piParentsDeleteRow('row" + rowID + "','" + rowID + "')\"><i class='icon-remove icon-white'></i> 删除</button>";
     piParentsTrLastIndex.value = (rowID + 1).toString();
     piParentsCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piParentsRowCount");
