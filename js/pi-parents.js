@@ -13,15 +13,15 @@ function piParentsFindObj(theObj, theDoc) {
 }
 
 function loadTableFromCookie(){
-    var linesCount = getCookie("linesCount");
+    var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("locus_"+i);
-        var AF1 = getCookie("AF1_"+i);
-        var AF2 = getCookie("AF2_"+i);
-        var M1 = getCookie("M1_"+i);
-        var M2 = getCookie("M2_"+i);
-        var C1 = getCookie("C1_"+i);
-        var C2 = getCookie("C2_"+i);
+        var locus = getCookie("piParentsLocus_"+i);
+        var AF1 = getCookie("piParentsAF1_"+i);
+        var AF2 = getCookie("piParentsAF2_"+i);
+        var M1 = getCookie("piParentsM1_"+i);
+        var M2 = getCookie("piParentsM2_"+i);
+        var C1 = getCookie("piParentsC1_"+i);
+        var C2 = getCookie("piParentsC2_"+i);
         if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
         }else{
@@ -106,7 +106,7 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    addCookie("linesCount",Number(piParentsCurrentCount.value),1);
+    addCookie("piParentsLinesCount",Number(piParentsCurrentCount.value),1);
 }
 
 function reloadValidate(){
@@ -170,22 +170,22 @@ function calculatePi(rowID){
     }
     var PI = piParentsFindObj("PI_" + rowID,document);
     PI.innerHTML = pi.toFixed(3);
-    addCookie("PI_"+rowID , pi.toFixed(3) , 1);
+    addCookie("piParentsPI_"+rowID , pi.toFixed(3) , 1);
     return(pi);
 }
 
 function calculate(){
     var cpi = 1;
     var rcp = 0;
-    var linesCount = getCookie("linesCount");
+    var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("locus_"+i);
-        var AF1 = getCookie("AF1_"+i);
-        var AF2 = getCookie("AF2_"+i);
-        var M1 = getCookie("M1_"+i);
-        var M2 = getCookie("M2_"+i);
-        var C1 = getCookie("C1_"+i);
-        var C2 = getCookie("C2_"+i);
+        var locus = getCookie("piParentsLocus_"+i);
+        var AF1 = getCookie("piParentsAF1_"+i);
+        var AF2 = getCookie("piParentsAF2_"+i);
+        var M1 = getCookie("piParentsM1_"+i);
+        var M2 = getCookie("piParentsM2_"+i);
+        var C1 = getCookie("piParentsC1_"+i);
+        var C2 = getCookie("piParentsC2_"+i);
         if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
         }else{
@@ -197,8 +197,8 @@ function calculate(){
     CPI.innerHTML = cpi.toFixed(4);
     var RCP = document.getElementById("RCP");
     RCP.innerHTML = rcp.toFixed(4);
-    addCookie("CPI",cpi.toFixed(4),1);
-    addCookie("RCP",rcp.toFixed(4),1);
+    addCookie("piParentsCPI",cpi.toFixed(4),1);
+    addCookie("piParentsRCP",rcp.toFixed(4),1);
     var piParentsRowCount = document.getElementById("piParentsRowCount");
     addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
     alert("计算完毕");
@@ -213,14 +213,14 @@ function saveDataIntoCookie(rowID,hours){
     var M2 = piParentsFindObj("M2_" + rowID,document).value;
     var C1 = piParentsFindObj("C1_" + rowID,document).value;
     var C2 = piParentsFindObj("C2_" + rowID,document).value;
-    addCookie("locus_" + rowID,locus,hours);
-    addCookie("locusValue_" + rowID,locusValue,hours);
-    addCookie("AF1_" + rowID,AF1,hours);
-    addCookie("AF2_" + rowID,AF2,hours);
-    addCookie("M1_" + rowID,M1,hours);
-    addCookie("M2_" + rowID,M2,hours);
-    addCookie("C1_" + rowID,C1,hours);
-    addCookie("C2_" + rowID,C2,hours);
+    addCookie("piParentsLocus_" + rowID,locus,hours);
+    addCookie("piParentslocusValue_" + rowID,locusValue,hours);
+    addCookie("piParentsAF1_" + rowID,AF1,hours);
+    addCookie("piParentsAF2_" + rowID,AF2,hours);
+    addCookie("piParentsM1_" + rowID,M1,hours);
+    addCookie("piParentsM2_" + rowID,M2,hours);
+    addCookie("piParentsC1_" + rowID,C1,hours);
+    addCookie("piParentsC2_" + rowID,C2,hours);
 }
 
 function piParentsDeleteRow(rowID,id) {
@@ -234,13 +234,16 @@ function piParentsDeleteRow(rowID,id) {
 }
 
 function deleteRowCookie(rowID){
-    delCookie("locus_"+rowID);
-    delCookie("AF1_"+rowID);
-    delCookie("AF2_"+rowID);
-    delCookie("M1_"+rowID);
-    delCookie("M2_"+rowID);
-    delCookie("C1_"+rowID);
-    delCookie("C2_"+rowID);
+    delCookie("piParentsLocus_"+rowID);
+    delCookie("piParentsAF1_"+rowID);
+    delCookie("piParentsAF2_"+rowID);
+    delCookie("piParentsM1_"+rowID);
+    delCookie("piParentsM2_"+rowID);
+    delCookie("piParentsC1_"+rowID);
+    delCookie("piParentsC2_"+rowID);
+    delCookie("piParentsCPI");
+    delCookie("piParentsRCP");
+    delCookie("piParentsRowCount");
 }
 
 function piParentsClearAllRows() {
@@ -261,11 +264,11 @@ function piParentsClearAllRows() {
 }
 
 function clearAllCookies(){
-    var linesCount = getCookie("linesCount");
+    var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
         deleteRowCookie(i);
     };
-    delCookie("linesCount");
+    delCookie("piParentsLinesCount");
 }
 
 function getAllete(xmlfile,allete){

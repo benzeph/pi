@@ -3,6 +3,8 @@
 <head>
 	<title>共显性遗传标记计算父权指数</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" href="../../img/relations-icon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../../img/relations-icon.ico" type="image/x-icon"/>
 	<style type="text/css">
 		th{
 			width: 100px;
@@ -61,16 +63,16 @@
 	}
 
 	function loadTableFromCookie(){
-		var linesCount = getCookie("linesCount");
+		var linesCount = getCookie("piParentsLinesCount");
 		for (var i = 1; i <= Number(linesCount); i++) {
-			var locus = getCookie("locusValue_"+i);
-			var AF1 = getCookie("AF1_"+i);
-			var AF2 = getCookie("AF2_"+i);
-			var M1 = getCookie("M1_"+i);
-			var M2 = getCookie("M2_"+i);
-			var C1 = getCookie("C1_"+i);
-			var C2 = getCookie("C2_"+i);
-			var pi = getCookie("PI_"+i);
+			var locus = getCookie("piParentsLocusValue_"+i);
+			var AF1 = getCookie("piParentsAF1_"+i);
+			var AF2 = getCookie("piParentsAF2_"+i);
+			var M1 = getCookie("piParentsM1_"+i);
+			var M2 = getCookie("piParentsM2_"+i);
+			var C1 = getCookie("piParentsC1_"+i);
+			var C2 = getCookie("piParentsC2_"+i);
+			var pi = getCookie("piParentsPI_"+i);
 			if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
 			}else{
@@ -78,8 +80,8 @@
 			}
 		};
 		var piParentsRowCount = getCookie("piParentsRowCount");
-		var cpi = getCookie("CPI");
-		var rcp = getCookie("RCP");
+		var cpi = getCookie("piParentsCPI");
+		var rcp = getCookie("piParentsRCP");
 		var CPI = document.getElementById("CPI");
 	    CPI.innerHTML = cpi;
 	    var RCP = document.getElementById("RCP");
