@@ -23,7 +23,7 @@ function loadTableFromCookie(){
         if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
         }else{
-             piSingleParentLoadRow(i,locus,AF1,AF2,M1,M2,C1,C2);   
+             piSingleParentLoadRow(i,locus,AF1,AF2,C1,C2);
         }
     };
 }
@@ -38,7 +38,7 @@ function generateSelectCode(rowID){
     return(code);
 }
 
-function piSingleParentLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
+function piSingleParentLoadRow(rowID,locus,AF1,AF2,C1,C2) {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piSingleParentTrLastIndex = piSingleParentFindObj("piSingleParentTrLastIndex", document);
     var piSingleParentCurrentCount = piSingleParentFindObj("piSingleParentCurrentCount", document);
@@ -48,13 +48,13 @@ function piSingleParentLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML =  generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
-    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-small'  id='AF1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF1.innerHTML = "<div class='control-group input-append'><input class='input-small' id='AF1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
-    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-small'  id='AF2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + AF2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newAF2.innerHTML = "<div class='control-group input-append'><input class='input-small' id='AF2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + AF2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC1 = newTR.insertCell(3);
-    newC1.innerHTML = "<div class='control-group input-append'><input class='input-small'  id='C1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC1.innerHTML = "<div class='control-group input-append'><input class='input-small' id='C1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newC2 = newTR.insertCell(4);
-    newC2.innerHTML = "<div class='control-group input-append'><input class='input-small'  id='C2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
+    newC2.innerHTML = "<div class='control-group input-append'><input class='input-small' id='C2_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)' value='" + C2 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newPi = newTR.insertCell(5);
     newPi.innerHTML = "<span class='input-small uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(6);
@@ -67,7 +67,6 @@ function piSingleParentLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     linesCount.innerHTML = (piSingleParentTable.rows.length - 1);
     reloadValidate();
 }
-
 
 function piSingleParentAddRow() {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
@@ -122,7 +121,17 @@ function calculatePi(rowID){
     var C1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C1);
     var C2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C2);
     var pi = 0;
-    
+    if(AF1==AF2&&C1==C2&&AF1==C1){
+        
+    }else if(C1!=C2&&AF1==AF2&&(AF1==C1||AF1==C2)){
+
+    }else if(AF1!=AF2&&C1==C2&&(C1==AF1||C1==AF2)){
+
+    }else if(C1!=C2&&AF1!=AF2&&(C1==AF1||C1==AF2)&&(C2==AF1||C2==AF2)){
+
+    }else if(C1!=C2&&AF1!=AF2&&((C1==AF1&&C1!=AF2)||(C2==AF1&&C2!=AF2))){
+
+    }
     var PI = piSingleParentFindObj("PI_" + rowID,document);
     PI.innerHTML = pi.toFixed(3);
     addCookie("piSingleParentPI_"+rowID , pi.toFixed(3) , 1);
@@ -139,7 +148,7 @@ function calculate(){
         var AF2 = getCookie("piSingleParentAF2_"+i);
         var C1 = getCookie("piSingleParentC1_"+i);
         var C2 = getCookie("piSingleParentC2_"+i);
-        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+        if(AF1 == null && AF2 == null && C1 == null && C2 == null){
 
         }else{
              cpi = cpi * Number(calculatePi(i));
