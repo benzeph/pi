@@ -122,15 +122,19 @@ function calculatePi(rowID){
     var C2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C2);
     var pi = 0;
     if(AF1==AF2&&C1==C2&&AF1==C1){
-        
+        pi = 1/Number(C1);
     }else if(C1!=C2&&AF1==AF2&&(AF1==C1||AF1==C2)){
-
+        pi = 1/(Number(AF1)*2);
     }else if(AF1!=AF2&&C1==C2&&(C1==AF1||C1==AF2)){
-
+        pi = 1/(Number(C1)*2);
     }else if(C1!=C2&&AF1!=AF2&&(C1==AF1||C1==AF2)&&(C2==AF1||C2==AF2)){
-
+        pi = (Number(C1)+Number(C2))/(4*Number(C1)*Number(C2));
     }else if(C1!=C2&&AF1!=AF2&&((C1==AF1&&C1!=AF2)||(C2==AF1&&C2!=AF2))){
-
+        if(C1==AF1&&C1!=AF2){
+            pi = 1/(4*Number(C1));
+        }else if(C2==AF1&&C2!=AF2){
+            pi = 1/(4*Number(C2));
+        }
     }
     var PI = piSingleParentFindObj("PI_" + rowID,document);
     PI.innerHTML = pi.toFixed(3);
@@ -156,11 +160,11 @@ function calculate(){
     };
     rcp = cpi/(1+cpi);
     var CPI = document.getElementById("CPI");
-    CPI.innerHTML = cpi.toFixed(4);
+    CPI.innerHTML = cpi;
     var RCP = document.getElementById("RCP");
-    RCP.innerHTML = rcp.toFixed(4);
-    addCookie("piSingleParentCPI",cpi.toFixed(4),1);
-    addCookie("piSingleParentRCP",rcp.toFixed(4),1);
+    RCP.innerHTML = rcp;
+    addCookie("piSingleParentCPI",cpi,1);
+    addCookie("piSingleParentRCP",rcp,1);
     var piSingleParentRowCount = document.getElementById("piSingleParentRowCount");
     addCookie("piSingleParentRowCount",piSingleParentRowCount.innerHTML,1);
     alert("计算完毕");
