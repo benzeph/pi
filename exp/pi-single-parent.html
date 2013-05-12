@@ -101,7 +101,7 @@
         在进行新的PI计算之前，请将上一次PI计算结果清空（方法：点击最下方的[ <b>清空</b>
         ]按钮）.
       </div>
-      <div id="piSingleParentContent">
+      <div id="piSingleParentContent" style="display:none;">
         <form id="form">
           <table class="table table-striped table-bordered" id="piSingleParentTable">
             <thead>
@@ -175,6 +175,11 @@
   </div>
   <script type="text/javascript" src="../js/pi-single-parent.js"></script>
   <script type="text/javascript" src="../js/jquery.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#piSingleParentContent").fadeIn(500);
+    });
+  </script>
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/jquery-validate.min.js"></script>
 </body>
