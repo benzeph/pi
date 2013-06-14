@@ -5,10 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:700' rel='stylesheet' type='text/css'></head>
   <link rel="icon" href="img/relations-icon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="img/relations-icon.ico" type="image/x-icon"/>
-  <link href='http://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css'></head>
   <style type="text/css">
       html,body {
         height: 100%;
@@ -44,6 +43,7 @@
         margin: 20px 0;
       }
     </style>
+
 <body  onload="loadTableFromCookie()">
   <div id="wrap">
     <div class="navbar navbar-fixed-top">
@@ -93,19 +93,16 @@
                   </li>
                 </ul>
               </li>
+              <li>
+                <a href="">数据库</a>
+              </li>
             </ul>
           </div>
           <!--/.nav-collapse --> </div>
       </div>
     </div>
     <div class="container">
-      <p class="text-center" style="font-size:150px;margin-top:30%;display:none;" id="title1">SIBSHIP</p>
-      <p class="text-center" style="font-size:50px;margin-top:100px;font-family: 'Yesteryear', cursive;display:none;" id="title2">Blood Relations</p>
-      <p class="text-center" style="font-size:50px;margin-top:50px;display:none;" id="title3">血缘关系</p>
-      <p class="text-center" style="margin-top:30px;"><img src="img/bottle.png"></p>
-      <p class="text-center" style="margin-top:80px">
-        <a id="startButton" href="how-to-use.html" class="btn btn-large btn-danger">如何使用</a>
-      </p>
+      
     </div>
   </div>
   <div id="push"></div>
@@ -114,10 +111,9 @@
   <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
   <script>
     $(document).ready(function(){
-      $("#title1").fadeIn(1000);
-      $("#title2").fadeIn(2000);
-      $("#title3").fadeIn(3000);
-      $('#startButton').popover('hide');
+      $("#howToUse").fadeIn(500);
+      $("#rules").fadeIn(1000);
+      $("#developTeam").fadeIn(2000);
     });
   </script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>

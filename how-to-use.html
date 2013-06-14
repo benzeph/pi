@@ -77,13 +77,24 @@
                     <a href="#">血缘关系</a>
                   </li>
                   <li class="divider"></li>
-                  <li>
-                    <a href="about.html">关于项目</a>
+                  <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">关于项目</a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="how-to-use.html">使用</a>
+                      </li>
+                      <li>
+                        <a href="formula.html">公式</a>
+                      </li>
+                      <li>
+                        <a href="database.html">数据库</a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="">关于项目</a>
+                <a href="">使用</a>
               </li>
             </ul>
           </div>
@@ -94,22 +105,7 @@
       <br>
       <br>
       <br>
-      <ul class="breadcrumb">
-        <li>
-          <a href="#howToUse">使用方法</a>
-          <span class="divider">/</span>
-        </li>
-        <li>
-          <a href="#rules">计算规则</a>
-          <span class="divider">/</span>
-        </li>
-        <li>
-          <a href="#developTeam">开发团队</a>
-        </li>
-      </ul>
       <div id="howToUse" style="display:none;">
-        <h2>使用方法说明</h2>
-        <p class="text-center text-error"> <b>一个“案例”模板</b>
         </p>
         <table class="table table-striped table-bordered" id="piParentsTable">
           <thead>
@@ -226,6 +222,108 @@
                 </button>
               </td>
             </tr>
+            <tr>
+              <td>
+                <select id='locus_' class='span2'>
+                  <option value=\"D3S1358\">D3S1358</option>
+                </select>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <button type='button' class='btn  btn-small  btn-danger'>
+                  <i class="icon-remove icon-white"></i>
+                  删除
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select id='locus_' class='span2'>
+                  <option value=\"D3S1358\">D3S1358</option>
+                </select>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <button type='button' class='btn  btn-small  btn-danger'>
+                  <i class="icon-remove icon-white"></i>
+                  删除
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select id='locus_' class='span2'>
+                  <option value=\"D3S1358\">D3S1358</option>
+                </select>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <input class="input-mini" type="text"/>
+              </td>
+              <td>
+                <button type='button' class='btn  btn-small  btn-danger'>
+                  <i class="icon-remove icon-white"></i>
+                  删除
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
         <div>
@@ -253,9 +351,7 @@
           <span class="text-info pull-right">基因座的个数：</span>
         </div>
         <br>
-        <p class="text-center text-error">
-          <b>按钮作用说明</b>
-        </p>
+        
         <div class="alert  alert-info">
           <ul class="unstyled">
             <li>
@@ -306,135 +402,6 @@
         </div>
       </div>
       <br>
-      <hr>
-      <div id="rules" style="display:none;">
-        <h2>计算规则</h2>
-        <table class="table table-striped table-bordered">
-          <caption>
-            <b class="text-error">共显性遗传标记计算父权指数计算规则</b>
-          </caption>
-          <thead>
-            <th style="width:20%;">#</th>
-            <th style="width:20%;">孩子</th>
-            <th style="width:20%;">母亲</th>
-            <th style="width:20%;">AF</th>
-            <th style="width:20%;">PI</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>q</td>
-              <td>pq</td>
-              <td>q</td>
-              <td>1/q</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>pq</td>
-              <td>p 或 pr</td>
-              <td>q</td>
-              <td>1/q</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>q</td>
-              <td>q</td>
-              <td>q</td>
-              <td>1/q</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>pq</td>
-              <td>p 或 pr 或 ps</td>
-              <td>qr 或 pq</td>
-              <td>1/2q</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>q</td>
-              <td>pq</td>
-              <td>qr 或 pq</td>
-              <td>1/2q</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>q</td>
-              <td>q</td>
-              <td>qr</td>
-              <td>1/2q</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>pq</td>
-              <td>pq</td>
-              <td>pq</td>
-              <td>1/(p+q)</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>pq</td>
-              <td>pq</td>
-              <td>q</td>
-              <td>1/(p+q)</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>pq</td>
-              <td>pq</td>
-              <td>qr</td>
-              <td>1/(2p+2q)</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <table class="table table-striped table-bordered">
-          <caption>
-            <b class="text-error">没有检测母亲的共显性遗传标记计算父权指数计算规则</b>
-          </caption>
-          <thead>
-            <th style="width:25%;">#</th>
-            <th style="width:25%;">孩子</th>
-            <th style="width:25%;">AF</th>
-            <th style="width:25%;">PI</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>q</td>
-              <td>q</td>
-              <td>1/q</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>pq</td>
-              <td>q</td>
-              <td>1/2q</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>q</td>
-              <td>qr</td>
-              <td>1/2q</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>pq</td>
-              <td>pq</td>
-              <td>(p+q)/4pq</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>pq</td>
-              <td>qr</td>
-              <td>1/4q</td>
-            </tr>
-          </tbody>
-        </table>
-        <br></div>
-      <hr>
-      <div id="developTeam" style="display:none;">
-        <h2>开发团队</h2>
-      </div>
     </div>
   </div>
   <div id="push"></div>
