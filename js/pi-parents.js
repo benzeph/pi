@@ -297,6 +297,7 @@ function getAllete(xmlfile,allete){
     xmlhttp.open("GET",xmlfile,false);
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
+    allete = allete.replace(".","_");
     return(xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue);
 } 
 
