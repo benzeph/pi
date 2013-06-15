@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" href="../../img/relations-icon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../../img/relations-icon.ico" type="image/x-icon"/>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="print">
 	<style type="text/css">
 		th{
 			width: 100px;
@@ -19,23 +21,23 @@
 		<h1>共显性遗传标记计算父权指数</h1>
 	</div>
 	<div id = "date"></div>
-	<hr>
 	<div>
-		<table id="table">
+		<table id="table" class="table">
 			<thead>
-				<th>基因座</th>
-				<th>C1</th>
-				<th>C2</th>
-				<th>M1</th>
-				<th>M2</th>
-				<th>AF1</th>
-				<th>AF2</th>
-				<th>PI</th>
+				<tr>
+					<th>基因座</th>
+					<th>C1</th>
+					<th>C2</th>
+					<th>M1</th>
+					<th>M2</th>
+					<th>AF1</th>
+					<th>AF2</th>
+					<th>PI</th>
+				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
-	<hr>
 	<div style="text-align:center; margin-top:5px;">
 		<span><b>基因座的个数:</b></span>
         <span id="piParentsRowCount" style="margin-right:20px;">0</span>
@@ -65,7 +67,7 @@
 	function loadTableFromCookie(){
 		var linesCount = getCookie("piParentsLinesCount");
 		for (var i = 1; i <= Number(linesCount); i++) {
-			var locus = getCookie("piParentsLocusValue_"+i);
+			var locus = getCookie("piParentslocusValue_"+i);
 			var AF1 = getCookie("piParentsAF1_"+i);
 			var AF2 = getCookie("piParentsAF2_"+i);
 			var M1 = getCookie("piParentsM1_"+i);
