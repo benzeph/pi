@@ -132,9 +132,13 @@
           <button class="btn  btn-success" type="button" onclick="piParentsAddRow()"> <i class="icon-plus icon-white"></i>
             添加
           </button>
-          <a class="btn  btn-info" type="button" href="/relations/exp/template/pi-parents-template.html" target="_blank"> <i class="icon-print icon-white"></i>
-            打印
-          </a>
+          <div class="btn-group">
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"> <i class="icon-print icon-white"></i> 打印</button>
+                <ul class="dropdown-menu">
+                  <li><a href="/relations/exp/template/pi-parents-template.html" target="_blank">默认模板</a></li>
+                  <li><a href="#">TJFYX模板</a></li>
+                </ul>
+          </div>
           <a href="#myModal" role="button" class="btn btn-warning" data-toggle="modal">
             <i class="icon-trash  icon-white"></i>
             清空
