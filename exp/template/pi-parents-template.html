@@ -9,10 +9,11 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="print">
 	<style type="text/css">
 		th{
-			width: 100px;
+			width: 12.5%;
+			text-align: center;
 		}
 		td{
-			width: 100px;
+			width: 12.5%;
 			text-align: center;
 		}
 	</style>
@@ -21,6 +22,7 @@
 		<h1>共显性遗传标记计算父权指数</h1>
 	</div>
 	<div id = "date"></div>
+	<br>
 	<div>
 		<table id="table" class="table">
 			<thead>
@@ -125,7 +127,7 @@
 	    for (i = 0; !foundObj && theDoc.layers && i < theDoc.layers.length; i++) foundObj = piParentsFindObj(theObj, theDoc.layers[i].document);
 	    if (!foundObj && document.getElementById) foundObj = document.getElementById(theObj);
 	    return foundObj;
-		}
+	}
 	</script>
 </body>
 </html>
