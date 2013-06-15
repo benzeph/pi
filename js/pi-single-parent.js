@@ -139,18 +139,18 @@ function calculatePi(rowID){
     var C2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C2);
     var pi = 0;
     if(AF1==AF2&&C1==C2&&AF1==C1){
-        pi = 1/Number(C1);
+        pi = 1/Number(C1value);
     }else if(C1!=C2&&AF1==AF2&&(AF1==C1||AF1==C2)){
-        pi = 1/(Number(AF1)*2);
+        pi = 1/(Number(AF1value)*2);
     }else if(AF1!=AF2&&C1==C2&&(C1==AF1||C1==AF2)){
-        pi = 1/(Number(C1)*2);
+        pi = 1/(Number(C1value)*2);
     }else if(C1!=C2&&AF1!=AF2&&(C1==AF1||C1==AF2)&&(C2==AF1||C2==AF2)){
-        pi = (Number(C1)+Number(C2))/(4*Number(C1)*Number(C2));
+        pi = (Number(C1value)+Number(C2value))/(4*Number(C1value)*Number(C2value));
     }else if(C1!=C2&&AF1!=AF2&&((C1==AF1&&C1!=AF2)||(C2==AF1&&C2!=AF2))){
         if(C1==AF1&&C1!=AF2){
-            pi = 1/(4*Number(C1));
+            pi = 1/(4*Number(C1value));
         }else if(C2==AF1&&C2!=AF2){
-            pi = 1/(4*Number(C2));
+            pi = 1/(4*Number(C2value));
         }
     }
     var PI = piSingleParentFindObj("PI_" + rowID,document);
