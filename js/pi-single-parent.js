@@ -133,10 +133,10 @@ function calculatePi(rowID){
     var AF2 = piSingleParentFindObj("AF2_" + (rowID),document).value;
     var C1 = piSingleParentFindObj("C1_" + (rowID),document).value;
     var C2 = piSingleParentFindObj("C2_" + (rowID),document).value;
-    var AF1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + AF1);
-    var AF2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + AF2);
-    var C1value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C1);
-    var C2value = getAllete("http://localhost:8080/relations/xml/" + locus + ".xml","a" + C2);
+    var AF1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + AF1);
+    var AF2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + AF2);
+    var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + C1);
+    var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + C2);
     var pi = 0;
     if(AF1==AF2&&C1==C2&&AF1==C1){
         pi = 1/Number(C1value);
