@@ -190,35 +190,44 @@ function calculatePi(rowID){
     addCookie("piParentsPI_"+rowID , pi.toFixed(6) , 1);
     return(pi);
 }
-
+function password(){
+    var password = piParentsFindObj("inputPassword", document).value;
+    var user_0_password = getAllete("http://localhost:8080/relations/xml/pwd/pwd.xml","user_0");
+    if(password == user_0_password){
+        return true;
+    }else{
+        return false;
+    }
+}
 function calculate(){
-    var cpi = 1;
-    var rcp = 0;
-    var linesCount = getCookie("piParentsLinesCount");
-    for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("piParentsLocus_"+i);
-        var AF1 = getCookie("piParentsAF1_"+i);
-        var AF2 = getCookie("piParentsAF2_"+i);
-        var M1 = getCookie("piParentsM1_"+i);
-        var M2 = getCookie("piParentsM2_"+i);
-        var C1 = getCookie("piParentsC1_"+i);
-        var C2 = getCookie("piParentsC2_"+i);
-        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+    if(password()==true){
+        var cpi = 1;
+        var rcp = 0;
+        var linesCount = getCookie("piParentsLinesCount");
+        for (var i = 1; i <= Number(linesCount); i++) {
+            var locus = getCookie("piParentsLocus_"+i);
+            var AF1 = getCookie("piParentsAF1_"+i);
+            var AF2 = getCookie("piParentsAF2_"+i);
+            var M1 = getCookie("piParentsM1_"+i);
+            var M2 = getCookie("piParentsM2_"+i);
+            var C1 = getCookie("piParentsC1_"+i);
+            var C2 = getCookie("piParentsC2_"+i);
+            if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
-        }else{
-             cpi = cpi * Number(calculatePi(i));
-        }
-    };
-    rcp = cpi/(1+cpi);
-    var CPI = document.getElementById("CPI");
-    CPI.innerHTML = cpi.toFixed(6);
-    var RCP = document.getElementById("RCP");
-    RCP.innerHTML = rcp.toFixed(6);
-    addCookie("piParentsCPI",cpi.toFixed(6),1);
-    addCookie("piParentsRCP",rcp.toFixed(6),1);
-    var piParentsRowCount = document.getElementById("piParentsRowCount");
-    addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
-    alert("计算完毕");
+            }else{
+                 cpi = cpi * Number(calculatePi(i));
+            }
+        };
+        rcp = cpi/(1+cpi);
+        var CPI = document.getElementById("CPI");
+        CPI.innerHTML = cpi.toFixed(6);
+        var RCP = document.getElementById("RCP");
+        RCP.innerHTML = rcp.toFixed(6);
+        addCookie("piParentsCPI",cpi.toFixed(6),1);
+        addCookie("piParentsRCP",rcp.toFixed(6),1);
+        var piParentsRowCount = document.getElementById("piParentsRowCount");
+        addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
+    }
 }
 
 function saveDataIntoCookie(rowID,hours){
