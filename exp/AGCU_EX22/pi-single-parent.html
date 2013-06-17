@@ -151,10 +151,10 @@
             <i class="icon-trash  icon-white"></i>
             清空
           </a>
-          <button class="btn btn-primary" type="button" onclick="calculate()">
+          <a href="#pwdModal" role="button" class="btn btn-primary" data-toggle="modal">
             <i class="icon-th icon-white"></i>
             计算
-          </button>
+          </a>
           
           <span class="text-info">CPI：</span>
           <span class="label label-success" id="CPI">0</span>
@@ -179,6 +179,20 @@
             <div class="modal-footer">
               <button class="btn btn-primary" onclick="piSingleParentClearAllRows()" data-dismiss="modal">是，清空全部</button>
               <button class="btn" data-dismiss="modal" aria-hidden="true">否</button>
+            </div>
+          </div>
+          <div id="pwdModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="pwdModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="pwdModalLabel">提示</h3>
+            </div>
+            <div class="modal-body">
+              <p>请输入计算密码</p>
+              <input type="password" id="inputPassword" placeholder="Password">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" onclick="calculate()" data-dismiss="modal">确定</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
             </div>
           </div>
         </div>
