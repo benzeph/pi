@@ -4,7 +4,7 @@
 3.database-xml
 ##1.公式
 
-**1.共显性遗传标记计算父权指数**  
+**1.共显性遗传标记计算父权指数计算规则**  
 孩子	母亲	AF	PI  
 q	pq	q	1/q  
 q	q	q	1/q  
@@ -16,6 +16,13 @@ pq	pq	pq	1/(p+q)
 pq	pq	qr	1/(2p+2q)  
 pq	p|pr|ps	qr|pq	1/2q  
 
+**没有检测母亲的共显性遗传标记计算父权指数计算规则**
+孩子	AF	PI
+q	q	1/q
+pq	q	1/2q
+q	qr	1/2q
+pq	pq	(p+q)/4pq
+pq	qr	1/4q
 
 ##2.界面
   为了简化开发，使用Bootstrap框架做UI
