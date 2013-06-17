@@ -17,6 +17,7 @@ pq	pq	qr	1/(2p+2q)
 pq	p|pr|ps	qr|pq	1/2q  
 
 **没有检测母亲的共显性遗传标记计算父权指数计算规则**
+
 孩子	AF	PI
 
 q	q	1/q
