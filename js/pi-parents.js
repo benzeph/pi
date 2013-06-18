@@ -200,7 +200,6 @@ function password(){
     }
 }
 function calculate(){
-    if(password()==true){
         var cpi = 1;
         var rcp = 0;
         var linesCount = getCookie("piParentsLinesCount");
@@ -227,7 +226,6 @@ function calculate(){
         addCookie("piParentsRCP",rcp.toFixed(6),1);
         var piParentsRowCount = document.getElementById("piParentsRowCount");
         addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
-    }
 }
 
 function saveDataIntoCookie(rowID,hours){
