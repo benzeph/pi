@@ -200,32 +200,32 @@ function password(){
     }
 }
 function calculate(){
-        var cpi = 1;
-        var rcp = 0;
-        var linesCount = getCookie("piParentsLinesCount");
-        for (var i = 1; i <= Number(linesCount); i++) {
-            var locus = getCookie("piParentsLocus_"+i);
-            var AF1 = getCookie("piParentsAF1_"+i);
-            var AF2 = getCookie("piParentsAF2_"+i);
-            var M1 = getCookie("piParentsM1_"+i);
-            var M2 = getCookie("piParentsM2_"+i);
-            var C1 = getCookie("piParentsC1_"+i);
-            var C2 = getCookie("piParentsC2_"+i);
-            if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+    var cpi = 1;
+    var rcp = 0;
+    var linesCount = getCookie("piParentsLinesCount");
+    for (var i = 1; i <= Number(linesCount); i++) {
+        var locus = getCookie("piParentsLocus_"+i);
+        var AF1 = getCookie("piParentsAF1_"+i);
+        var AF2 = getCookie("piParentsAF2_"+i);
+        var M1 = getCookie("piParentsM1_"+i);
+        var M2 = getCookie("piParentsM2_"+i);
+        var C1 = getCookie("piParentsC1_"+i);
+        var C2 = getCookie("piParentsC2_"+i);
+        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
 
-            }else{
-                 cpi = cpi * Number(calculatePi(i));
-            }
-        };
-        rcp = cpi/(1+cpi);
-        var CPI = document.getElementById("CPI");
-        CPI.innerHTML = cpi.toFixed(6);
-        var RCP = document.getElementById("RCP");
-        RCP.innerHTML = rcp.toFixed(6);
-        addCookie("piParentsCPI",cpi.toFixed(6),1);
-        addCookie("piParentsRCP",rcp.toFixed(6),1);
-        var piParentsRowCount = document.getElementById("piParentsRowCount");
-        addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
+        }else{
+             cpi = cpi * Number(calculatePi(i));
+        }
+    };
+    rcp = cpi/(1+cpi);
+    var CPI = document.getElementById("CPI");
+    CPI.innerHTML = cpi.toFixed(6);
+    var RCP = document.getElementById("RCP");
+    RCP.innerHTML = rcp.toFixed(6);
+    addCookie("piParentsCPI",cpi.toFixed(6),1);
+    addCookie("piParentsRCP",rcp.toFixed(6),1);
+    var piParentsRowCount = document.getElementById("piParentsRowCount");
+    addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
 }
 
 function saveDataIntoCookie(rowID,hours){
@@ -305,7 +305,12 @@ function getAllete(xmlfile,allete){
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
     allete = allete.replace(".","_");
-    return(xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue);
+    try{
+        alleteValue = xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue;
+    }catch(e){
+        alleteValue = 0.0005;
+    }
+    return (alleteValue);
 } 
 
 function cookie(name){    

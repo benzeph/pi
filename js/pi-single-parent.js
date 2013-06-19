@@ -170,30 +170,30 @@ function password(){
 }
 
 function calculate(){
-        var cpi = 1;
-        var rcp = 0;
-        var linesCount = getCookie("piSingleParentLinesCount");
-        for (var i = 1; i <= Number(linesCount); i++) {
-            var locus = getCookie("piSingleParentLocus_"+i);
-            var AF1 = getCookie("piSingleParentAF1_"+i);
-            var AF2 = getCookie("piSingleParentAF2_"+i);
-            var C1 = getCookie("piSingleParentC1_"+i);
-            var C2 = getCookie("piSingleParentC2_"+i);
-            if(AF1 == null && AF2 == null && C1 == null && C2 == null){
+    var cpi = 1;
+    var rcp = 0;
+    var linesCount = getCookie("piSingleParentLinesCount");
+    for (var i = 1; i <= Number(linesCount); i++) {
+        var locus = getCookie("piSingleParentLocus_"+i);
+        var AF1 = getCookie("piSingleParentAF1_"+i);
+        var AF2 = getCookie("piSingleParentAF2_"+i);
+        var C1 = getCookie("piSingleParentC1_"+i);
+        var C2 = getCookie("piSingleParentC2_"+i);
+        if(AF1 == null && AF2 == null && C1 == null && C2 == null){
 
-            }else{
-                 cpi = cpi * Number(calculatePi(i));
-            }
-        };
-        rcp = cpi/(1+cpi);
-        var CPI = document.getElementById("CPI");
-        CPI.innerHTML = cpi.toFixed(6);
-        var RCP = document.getElementById("RCP");
-        RCP.innerHTML = rcp.toFixed(6);
-        addCookie("piSingleParentCPI",cpi.toFixed(6),1);
-        addCookie("piSingleParentRCP",rcp.toFixed(6),1);
-        var piSingleParentRowCount = document.getElementById("piSingleParentRowCount");
-        addCookie("piSingleParentRowCount",piSingleParentRowCount.innerHTML,1);
+        }else{
+             cpi = cpi * Number(calculatePi(i));
+        }
+    };
+    rcp = cpi/(1+cpi);
+    var CPI = document.getElementById("CPI");
+    CPI.innerHTML = cpi.toFixed(6);
+    var RCP = document.getElementById("RCP");
+    RCP.innerHTML = rcp.toFixed(6);
+    addCookie("piSingleParentCPI",cpi.toFixed(6),1);
+    addCookie("piSingleParentRCP",rcp.toFixed(6),1);
+    var piSingleParentRowCount = document.getElementById("piSingleParentRowCount");
+    addCookie("piSingleParentRowCount",piSingleParentRowCount.innerHTML,1);
 }
 
 function saveDataIntoCookie(rowID,hours){
@@ -266,7 +266,13 @@ function getAllete(xmlfile,allete){
     xmlhttp.open("GET",xmlfile,false);
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
-    return(xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue);
+    var alleteValue;
+    try{
+        alleteValue = xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue;
+    }catch(e){
+        alleteValue = 0.0005;
+    }
+    return (alleteValue);
 } 
 
 function cookie(name){    
