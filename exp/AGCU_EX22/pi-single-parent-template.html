@@ -105,12 +105,24 @@
 		var newLocus = newTR.insertCell(0);
 		newLocus.innerHTML = locus;
 		var newAF1 = newTR.insertCell(1);
+		if(AF1==999){
+			AF1 = "others";
+		}
 		newAF1.innerHTML = AF1;
 		var newAF2 = newTR.insertCell(2);
+		if(AF2==999){
+			AF2 = "others";
+		}
 		newAF2.innerHTML = AF2;
 		var newC1 = newTR.insertCell(3);
+		if(C1==999){
+			C1 = "others";
+		}
 		newC1.innerHTML = C1;
 		var newC2 = newTR.insertCell(4);
+		if(C2==999){
+			C2 = "others";
+		}
 		newC2.innerHTML = C2;
 		var newPi = newTR.insertCell(5);
 		newPi.innerHTML = PI;

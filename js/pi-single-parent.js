@@ -267,10 +267,14 @@ function getAllete(xmlfile,allete){
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
     var alleteValue;
-    try{
-        alleteValue = xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue;
-    }catch(e){
-        alleteValue = 0.0005;
+    if(allete == "a999"){
+        alleteValue = Number(1/611);
+    }else{
+        try{
+            alleteValue = xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue;
+        }catch(e){
+            alert("等位基因 ["+allete.replace("a","")+"] 不存在");
+        }
     }
     return (alleteValue);
 } 
