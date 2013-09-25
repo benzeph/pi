@@ -12,52 +12,53 @@ function piParentsFindObj(theObj, theDoc) {
     return foundObj;
 }
 
-function loadTableFromCookie(){
+function loadTableFromCookie() {
     var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("piParentsLocus_"+i);
-        var AF1 = getCookie("piParentsAF1_"+i);
-        var AF2 = getCookie("piParentsAF2_"+i);
-        var M1 = getCookie("piParentsM1_"+i);
-        var M2 = getCookie("piParentsM2_"+i);
-        var C1 = getCookie("piParentsC1_"+i);
-        var C2 = getCookie("piParentsC2_"+i);
-        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+        var locus = getCookie("piParentsLocus_" + i);
+        var AF1 = getCookie("piParentsAF1_" + i);
+        var AF2 = getCookie("piParentsAF2_" + i);
+        var M1 = getCookie("piParentsM1_" + i);
+        var M2 = getCookie("piParentsM2_" + i);
+        var C1 = getCookie("piParentsC1_" + i);
+        var C2 = getCookie("piParentsC2_" + i);
+        if (AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null) {
 
-        }else{
-             piParentsLoadRow(i,locus,AF1,AF2,M1,M2,C1,C2);   
+        } else {
+            piParentsLoadRow(i, locus, AF1, AF2, M1, M2, C1, C2);
         }
-    };
+    }
+    ;
 }
 
-function generateSelectCode(rowID){
-    var code ="<select id='locus_" + rowID + "' onclick='saveDataIntoCookie(" + rowID + ", 1)' class='span2'>"+
-    "<option value=\"D3S1358\">D3S1358</option>"+
-    "<option value=\"D13S317\">D13S317</option>"+
-    "<option value=\"D7S820\">D7S820</option>"+
-    "<option value=\"D16S539\">D16S539</option>"+
-    "<option value=\"PentaE\">Penta E</option>"+
-    "<option value=\"D2S441\">D2S441</option>"+
-    "<option value=\"TPOX\">TPOX</option>"+
-    "<option value=\"TH01\">TH01</option>"+
-    "<option value=\"D2S1338\">D2S1338</option>"+
-    "<option value=\"CSF1PO\">CSF1PO</option>"+
-    "<option value=\"PentaD\">Penta D</option>"+
-    "<option value=\"D10S1248\">D10S1248</option>"+
-    "<option value=\"D19S433\">D19S433</option>"+
-    "<option value=\"vWA\">vWA</option>"+
-    "<option value=\"D21S11\">D21S11</option>"+
-    "<option value=\"D18S51\">D18S51</option>"+
-    "<option value=\"D6S1043\">D6S1043</option>"+
-    "<option value=\"D8S1179\">D8S1179</option>"+
-    "<option value=\"D5S818\">D5S818</option>"+
-    "<option value=\"D12S391\">D12S391</option>"+
-    "<option value=\"FGA\">FGA</option>"+
-    "</select>";
+function generateSelectCode(rowID) {
+    var code = "<select id='locus_" + rowID + "' onclick='saveDataIntoCookie(" + rowID + ", 1)' class='span2'>" +
+        "<option value=\"D3S1358\">D3S1358</option>" +
+        "<option value=\"D13S317\">D13S317</option>" +
+        "<option value=\"D7S820\">D7S820</option>" +
+        "<option value=\"D16S539\">D16S539</option>" +
+        "<option value=\"PentaE\">Penta E</option>" +
+        "<option value=\"D2S441\">D2S441</option>" +
+        "<option value=\"TPOX\">TPOX</option>" +
+        "<option value=\"TH01\">TH01</option>" +
+        "<option value=\"D2S1338\">D2S1338</option>" +
+        "<option value=\"CSF1PO\">CSF1PO</option>" +
+        "<option value=\"PentaD\">Penta D</option>" +
+        "<option value=\"D10S1248\">D10S1248</option>" +
+        "<option value=\"D19S433\">D19S433</option>" +
+        "<option value=\"vWA\">vWA</option>" +
+        "<option value=\"D21S11\">D21S11</option>" +
+        "<option value=\"D18S51\">D18S51</option>" +
+        "<option value=\"D6S1043\">D6S1043</option>" +
+        "<option value=\"D8S1179\">D8S1179</option>" +
+        "<option value=\"D5S818\">D5S818</option>" +
+        "<option value=\"D12S391\">D12S391</option>" +
+        "<option value=\"FGA\">FGA</option>" +
+        "</select>";
     return(code);
 }
 
-function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
+function piParentsLoadRow(rowID, locus, AF1, AF2, M1, M2, C1, C2) {
     var regularExpression = "^[0-9]+(\\.[0-9]+)?$";
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
     var piParentsCurrentCount = piParentsFindObj("piParentsCurrentCount", document);
@@ -65,7 +66,7 @@ function piParentsLoadRow(rowID,locus,AF1,AF2,M1,M2,C1,C2) {
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
-    newAllele.innerHTML =  generateSelectCode(rowID);
+    newAllele.innerHTML = generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
     newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini'  id='AF1_" + rowID + "'  type='text' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  value='" + AF1 + "' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
@@ -101,7 +102,7 @@ function piParentsAddRow() {
     var newTR = piParentsTable.insertRow(piParentsTable.rows.length);
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
-    newAllele.innerHTML =  generateSelectCode(rowID);
+    newAllele.innerHTML = generateSelectCode(rowID);
     var newAF1 = newTR.insertCell(1);
     newAF1.innerHTML = "<div class='control-group input-append'><input class='input-mini' onBlur='saveDataIntoCookie(" + rowID + ", 1)'  id='AF1_" + rowID + "'  type='text' data-required data-pattern='" + regularExpression + "'/></div>";
     var newAF2 = newTR.insertCell(2);
@@ -123,131 +124,132 @@ function piParentsAddRow() {
     var linesCount = document.getElementById("piParentsRowCount");
     linesCount.innerHTML = (piParentsTable.rows.length - 1);
     reloadValidate();
-    addCookie("piParentsLinesCount",Number(piParentsCurrentCount.value),1);
+    addCookie("piParentsLinesCount", Number(piParentsCurrentCount.value), 1);
 }
 
-function reloadValidate(){
+function reloadValidate() {
     $('form').validate({
-        onBlur : true,
-        eachValidField : function() {
+        onBlur: true,
+        eachValidField: function () {
             $(this).closest('div').removeClass('error').addClass('success');
         },
-        eachInvalidField : function() {
+        eachInvalidField: function () {
             $(this).closest('div').removeClass('success').addClass('error');
         }
     });
 }
 
-function calculatePi(rowID){
-    var locus = piParentsFindObj("locus_" + (rowID),document).value;
-    var AF1 = piParentsFindObj("AF1_" + (rowID),document).value;
-    var AF2 = piParentsFindObj("AF2_" + (rowID),document).value;
-    var M1 = piParentsFindObj("M1_" + (rowID),document).value;
-    var M2 = piParentsFindObj("M2_" + (rowID),document).value;
-    var C1 = piParentsFindObj("C1_" + (rowID),document).value;
-    var C2 = piParentsFindObj("C2_" + (rowID),document).value;
-    var AF1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + AF1);
-    var AF2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + AF2);
-    var M1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + M1);
-    var M2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + M2);
-    var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + C1);
-    var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml","a" + C2);
+function calculatePi(rowID) {
+    var locus = piParentsFindObj("locus_" + (rowID), document).value;
+    var AF1 = piParentsFindObj("AF1_" + (rowID), document).value;
+    var AF2 = piParentsFindObj("AF2_" + (rowID), document).value;
+    var M1 = piParentsFindObj("M1_" + (rowID), document).value;
+    var M2 = piParentsFindObj("M2_" + (rowID), document).value;
+    var C1 = piParentsFindObj("C1_" + (rowID), document).value;
+    var C2 = piParentsFindObj("C2_" + (rowID), document).value;
+    var AF1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + AF1);
+    var AF2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + AF2);
+    var M1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + M1);
+    var M2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + M2);
+    var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C1);
+    var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
     var pi = 0;
-    if(C1==C2){
-        if(AF1==AF2&&AF1==C1&&(M1==AF1||M2==AF1)){
-            pi = 1/Number(C1value);
+    if (C1 == C2) {
+        if (AF1 == AF2 && AF1 == C1 && (M1 == AF1 || M2 == AF1)) {
+            pi = 1 / Number(C1value);
         }
-        if(AF1!=AF2&&(AF1==C1||AF2==C1)&&(M1==AF1||M2==AF1)){
-            pi = 1/(2*Number(C1value));
+        if (AF1 != AF2 && (AF1 == C1 || AF2 == C1) && (M1 == AF1 || M2 == AF1)) {
+            pi = 1 / (2 * Number(C1value));
         }
-    }else if(C1!=C2){
-        if(AF1==AF2&&(AF1==C1||AF1==C2)){
-            if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-                pi=1/(Number(C1value)+Number(C2value));
-            }else if(M1==M2&&(M1==C1||M1==C2)){
-                pi=1/Number(AF1value);
-            }else if(M1!=M2&&(M1==C1||M1==C2||M2==C1||M2==C2)){
-                pi=1/Number(AF1value);
+    } else if (C1 != C2) {
+        if (AF1 == AF2 && (AF1 == C1 || AF1 == C2)) {
+            if (M1 != M2 && (M1 == C1 || M1 == C2) && (M2 == C1 || M2 == C2)) {
+                pi = 1 / (Number(C1value) + Number(C2value));
+            } else if (M1 == M2 && (M1 == C1 || M1 == C2)) {
+                pi = 1 / Number(AF1value);
+            } else if (M1 != M2 && (M1 == C1 || M1 == C2 || M2 == C1 || M2 == C2)) {
+                pi = 1 / Number(AF1value);
             }
-        }else if(M1!=M2&&(M1==C1||M1==C2)&&(M2==C1||M2==C2)){
-            if(AF1!=AF2&&(AF1==C1||AF1==C2)&&(AF2==C1||AF2==C2)){
-                pi=1/(Number(C1value)+Number(C2value));
-            }else if(AF1!=AF2&&(C1==AF1||C1==AF2||C2==AF1||C2==AF2)&&((AF1!=C1&&AF1!=C2)||(AF2!=C1&&AF2!=C2))){
-                pi=1/(2*Number(C1value)+2*Number(C2value));
+        } else if (M1 != M2 && (M1 == C1 || M1 == C2) && (M2 == C1 || M2 == C2)) {
+            if (AF1 != AF2 && (AF1 == C1 || AF1 == C2) && (AF2 == C1 || AF2 == C2)) {
+                pi = 1 / (Number(C1value) + Number(C2value));
+            } else if (AF1 != AF2 && (C1 == AF1 || C1 == AF2 || C2 == AF1 || C2 == AF2) && ((AF1 != C1 && AF1 != C2) || (AF2 != C1 && AF2 != C2))) {
+                pi = 1 / (2 * Number(C1value) + 2 * Number(C2value));
             }
-        }else if(((C1==M1||C1==M2)&&(C2!=M1&&C2!=M2))||((C2==M1||C2==M2)&&(C1!=M1&&C1!=M2))){
-            if(AF1!=AF2&&(AF1==C1||AF1==C2||AF2==C1||AF2==C2)){
-                if(C1==M1||C1==M2){
-                    pi=1/(2*Number(C2value));
-                }else if(C2==M1||C2==M2){
-                    pi=1/(2*Number(C1value));
+        } else if (((C1 == M1 || C1 == M2) && (C2 != M1 && C2 != M2)) || ((C2 == M1 || C2 == M2) && (C1 != M1 && C1 != M2))) {
+            if (AF1 != AF2 && (AF1 == C1 || AF1 == C2 || AF2 == C1 || AF2 == C2)) {
+                if (C1 == M1 || C1 == M2) {
+                    pi = 1 / (2 * Number(C2value));
+                } else if (C2 == M1 || C2 == M2) {
+                    pi = 1 / (2 * Number(C1value));
                 }
             }
         }
     }
-    var PI = piParentsFindObj("PI_" + rowID,document);
+    var PI = piParentsFindObj("PI_" + rowID, document);
     PI.innerHTML = pi.toFixed(6);
-    addCookie("piParentsPI_"+rowID , pi.toFixed(6) , 1);
+    addCookie("piParentsPI_" + rowID, pi.toFixed(6), 1);
     return(pi);
 }
-function password(){
+function password() {
     var password = piParentsFindObj("inputPassword", document).value;
-    var user_0_password = getAllete("http://localhost:8080/relations/xml/pwd/pwd.xml","user_0");
-    if(password == user_0_password){
+    var user_0_password = getAllete("http://localhost:8080/relations/xml/pwd/pwd.xml", "user_0");
+    if (password == user_0_password) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
-function calculate(){
+function calculate() {
     var cpi = 1;
     var rcp = 0;
     var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("piParentsLocus_"+i);
-        var AF1 = getCookie("piParentsAF1_"+i);
-        var AF2 = getCookie("piParentsAF2_"+i);
-        var M1 = getCookie("piParentsM1_"+i);
-        var M2 = getCookie("piParentsM2_"+i);
-        var C1 = getCookie("piParentsC1_"+i);
-        var C2 = getCookie("piParentsC2_"+i);
-        if(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null){
+        var locus = getCookie("piParentsLocus_" + i);
+        var AF1 = getCookie("piParentsAF1_" + i);
+        var AF2 = getCookie("piParentsAF2_" + i);
+        var M1 = getCookie("piParentsM1_" + i);
+        var M2 = getCookie("piParentsM2_" + i);
+        var C1 = getCookie("piParentsC1_" + i);
+        var C2 = getCookie("piParentsC2_" + i);
+        if (AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null) {
 
-        }else{
-             cpi = cpi * Number(calculatePi(i));
+        } else {
+            cpi = cpi * Number(calculatePi(i));
         }
-    };
-    rcp = cpi/(1+cpi);
+    }
+    ;
+    rcp = cpi / (1 + cpi);
     var CPI = document.getElementById("CPI");
     CPI.innerHTML = cpi.toFixed(6);
     var RCP = document.getElementById("RCP");
     RCP.innerHTML = rcp.toFixed(6);
-    addCookie("piParentsCPI",cpi.toFixed(6),1);
-    addCookie("piParentsRCP",rcp.toFixed(6),1);
+    addCookie("piParentsCPI", cpi.toFixed(6), 1);
+    addCookie("piParentsRCP", rcp.toFixed(6), 1);
     var piParentsRowCount = document.getElementById("piParentsRowCount");
-    addCookie("piParentsRowCount",piParentsRowCount.innerHTML,1);
+    addCookie("piParentsRowCount", piParentsRowCount.innerHTML, 1);
 }
 
-function saveDataIntoCookie(rowID,hours){
-    var locus = piParentsFindObj("locus_" + rowID,document).selectedIndex;
-    var locusValue = piParentsFindObj("locus_" + rowID,document).value;
-    var AF1 = piParentsFindObj("AF1_" + rowID,document).value;
-    var AF2 = piParentsFindObj("AF2_" + rowID,document).value;
-    var M1 = piParentsFindObj("M1_" + rowID,document).value;
-    var M2 = piParentsFindObj("M2_" + rowID,document).value;
-    var C1 = piParentsFindObj("C1_" + rowID,document).value;
-    var C2 = piParentsFindObj("C2_" + rowID,document).value;
-    addCookie("piParentsLocus_" + rowID,locus,hours);
-    addCookie("piParentslocusValue_" + rowID,locusValue,hours);
-    addCookie("piParentsAF1_" + rowID,AF1,hours);
-    addCookie("piParentsAF2_" + rowID,AF2,hours);
-    addCookie("piParentsM1_" + rowID,M1,hours);
-    addCookie("piParentsM2_" + rowID,M2,hours);
-    addCookie("piParentsC1_" + rowID,C1,hours);
-    addCookie("piParentsC2_" + rowID,C2,hours);
+function saveDataIntoCookie(rowID, hours) {
+    var locus = piParentsFindObj("locus_" + rowID, document).selectedIndex;
+    var locusValue = piParentsFindObj("locus_" + rowID, document).value;
+    var AF1 = piParentsFindObj("AF1_" + rowID, document).value;
+    var AF2 = piParentsFindObj("AF2_" + rowID, document).value;
+    var M1 = piParentsFindObj("M1_" + rowID, document).value;
+    var M2 = piParentsFindObj("M2_" + rowID, document).value;
+    var C1 = piParentsFindObj("C1_" + rowID, document).value;
+    var C2 = piParentsFindObj("C2_" + rowID, document).value;
+    addCookie("piParentsLocus_" + rowID, locus, hours);
+    addCookie("piParentslocusValue_" + rowID, locusValue, hours);
+    addCookie("piParentsAF1_" + rowID, AF1, hours);
+    addCookie("piParentsAF2_" + rowID, AF2, hours);
+    addCookie("piParentsM1_" + rowID, M1, hours);
+    addCookie("piParentsM2_" + rowID, M2, hours);
+    addCookie("piParentsC1_" + rowID, C1, hours);
+    addCookie("piParentsC2_" + rowID, C2, hours);
 }
 
-function piParentsDeleteRow(rowID,id) {
+function piParentsDeleteRow(rowID, id) {
     var piParentsTable = piParentsFindObj("piParentsTable", document);
     var row = piParentsFindObj(rowID, document);
     var rowIndex = row.rowIndex;
@@ -257,14 +259,14 @@ function piParentsDeleteRow(rowID,id) {
     deleteRowCookie(Number(id));
 }
 
-function deleteRowCookie(rowID){
-    delCookie("piParentsLocus_"+rowID);
-    delCookie("piParentsAF1_"+rowID);
-    delCookie("piParentsAF2_"+rowID);
-    delCookie("piParentsM1_"+rowID);
-    delCookie("piParentsM2_"+rowID);
-    delCookie("piParentsC1_"+rowID);
-    delCookie("piParentsC2_"+rowID);
+function deleteRowCookie(rowID) {
+    delCookie("piParentsLocus_" + rowID);
+    delCookie("piParentsAF1_" + rowID);
+    delCookie("piParentsAF2_" + rowID);
+    delCookie("piParentsM1_" + rowID);
+    delCookie("piParentsM2_" + rowID);
+    delCookie("piParentsC1_" + rowID);
+    delCookie("piParentsC2_" + rowID);
     delCookie("piParentsCPI");
     delCookie("piParentsRCP");
     delCookie("piParentsRowCount");
@@ -287,80 +289,82 @@ function piParentsClearAllRows() {
     RCP.innerHTML = 0
 }
 
-function clearAllCookies(){
+function clearAllCookies() {
     var linesCount = getCookie("piParentsLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
         deleteRowCookie(i);
-    };
+    }
+    ;
     delCookie("piParentsLinesCount");
 }
 
-function getAllete(xmlfile,allete){
-    if (window.XMLHttpRequest){
+function getAllete(xmlfile, allete) {
+    if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
-    }else{
+    } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.open("GET",xmlfile,false);
+    xmlhttp.open("GET", xmlfile, false);
     xmlhttp.send();
     xmlDoc = xmlhttp.responseXML;
-    allete = allete.replace(".","_");
-    if(allete == "a999"){
-        alleteValue = Number(1/611);
-    }else{
-        try{
+    allete = allete.replace(".", "_");
+    if (allete == "a999") {
+        alleteValue = Number(1 / 611);
+    } else {
+        try {
             alleteValue = xmlDoc.getElementsByTagName(allete)[0].childNodes[0].nodeValue;
-        }catch(e){
-            alert("等位基因 ["+allete.replace("a","")+"] 不存在");
+        } catch (e) {
+            alert("等位基因 [" + allete.replace("a", "") + "] 不存在");
         }
     }
     return (alleteValue);
-} 
-
-function cookie(name){    
-   var cookieArray=document.cookie.split("; "); //得到分割的cookie名值对    
-   var cookie=new Object();    
-   for (var i=0;i<cookieArray.length;i++){    
-      var arr=cookieArray[i].split("=");       //将名和值分开    
-      if(arr[0]==name)return unescape(arr[1]); //如果是指定的cookie，则返回它的值    
-   } 
-   return ""; 
-} 
-
-function getCookie(objName){//获取指定名称的cookie的值
-    var arrStr = document.cookie.split("; ");
-    for(var i = 0;i < arrStr.length;i ++){
-        var temp = arrStr[i].split("=");
-        if(temp[0] == objName) return unescape(temp[1]);
-   } 
 }
 
-function addCookie(objName,objValue,objHours){      //添加cookie
+function cookie(name) {
+    var cookieArray = document.cookie.split("; "); //得到分割的cookie名值对
+    var cookie = new Object();
+    for (var i = 0; i < cookieArray.length; i++) {
+        var arr = cookieArray[i].split("=");       //将名和值分开
+        if (arr[0] == name)return unescape(arr[1]); //如果是指定的cookie，则返回它的值
+    }
+    return "";
+}
+
+function getCookie(objName) {//获取指定名称的cookie的值
+    var arrStr = document.cookie.split("; ");
+    for (var i = 0; i < arrStr.length; i++) {
+        var temp = arrStr[i].split("=");
+        if (temp[0] == objName) return unescape(temp[1]);
+    }
+}
+
+function addCookie(objName, objValue, objHours) {      //添加cookie
     var str = objName + "=" + escape(objValue);
-    if(objHours > 0){                               //为时不设定过期时间，浏览器关闭时cookie自动消失
+    if (objHours > 0) {                               //为时不设定过期时间，浏览器关闭时cookie自动消失
         var date = new Date();
-        var ms = objHours*3600*1000;
+        var ms = objHours * 3600 * 1000;
         date.setTime(date.getTime() + ms);
         str += "; expires=" + date.toGMTString();
-   }
-   document.cookie = str;
+    }
+    document.cookie = str;
 }
 
-function SetCookie(name,value){
+function SetCookie(name, value) {
     var Days = 30; //此 cookie 将被保存 30 天
     var exp = new Date();    //new Date("December 31, 9998");
-    exp.setTime(exp.getTime() + Days*24*60*60*1000);
-    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
-function getCookie(name){
-    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
-    if(arr != null) return unescape(arr[2]); return null;
+function getCookie(name) {
+    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+    if (arr != null) return unescape(arr[2]);
+    return null;
 }
 
-function delCookie(name){
+function delCookie(name) {
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);
-    var cval=getCookie(name);
-    if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    var cval = getCookie(name);
+    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
 }
