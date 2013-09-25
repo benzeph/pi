@@ -22,9 +22,7 @@ function loadTableFromCookie() {
         var M2 = getCookie("piParentsM2_" + i);
         var C1 = getCookie("piParentsC1_" + i);
         var C2 = getCookie("piParentsC2_" + i);
-        if (AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null) {
-
-        } else {
+        if (!(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null)) {
             piParentsLoadRow(i, locus, AF1, AF2, M1, M2, C1, C2);
         }
     }
@@ -191,15 +189,7 @@ function calculatePi(rowID) {
     addCookie("piParentsPI_" + rowID, pi.toFixed(6), 1);
     return(pi);
 }
-function password() {
-    var password = piParentsFindObj("inputPassword", document).value;
-    var user_0_password = getAllete("http://localhost:8080/relations/xml/pwd/pwd.xml", "user_0");
-    if (password == user_0_password) {
-        return true;
-    } else {
-        return false;
-    }
-}
+
 function calculate() {
     var cpi = 1;
     var rcp = 0;
@@ -212,13 +202,10 @@ function calculate() {
         var M2 = getCookie("piParentsM2_" + i);
         var C1 = getCookie("piParentsC1_" + i);
         var C2 = getCookie("piParentsC2_" + i);
-        if (AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null) {
-
-        } else {
+        if (!(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null)) {
             cpi = cpi * Number(calculatePi(i));
         }
     }
-    ;
     rcp = cpi / (1 + cpi);
     var CPI = document.getElementById("CPI");
     CPI.innerHTML = cpi.toFixed(6);
@@ -275,7 +262,7 @@ function deleteRowCookie(rowID) {
 function piParentsClearAllRows() {
     var piParentsTable = piParentsFindObj("piParentsTable", document);
     var piParentsRowCount = piParentsTable.rows.length;
-    for (i = piParentsRowCount - 1; i > 0; i--) {
+    for (var i = piParentsRowCount - 1; i > 0; i--) {
         piParentsTable.deleteRow(i);
     }
     var piParentsTrLastIndex = piParentsFindObj("piParentsTrLastIndex", document);
@@ -286,7 +273,7 @@ function piParentsClearAllRows() {
     var CPI = document.getElementById("CPI");
     CPI.innerHTML = 0;
     var RCP = document.getElementById("RCP");
-    RCP.innerHTML = 0
+    RCP.innerHTML = 0;
 }
 
 function clearAllCookies() {
@@ -294,11 +281,11 @@ function clearAllCookies() {
     for (var i = 1; i <= Number(linesCount); i++) {
         deleteRowCookie(i);
     }
-    ;
     delCookie("piParentsLinesCount");
 }
 
 function getAllete(xmlfile, allete) {
+    var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -306,7 +293,7 @@ function getAllete(xmlfile, allete) {
     }
     xmlhttp.open("GET", xmlfile, false);
     xmlhttp.send();
-    xmlDoc = xmlhttp.responseXML;
+    var xmlDoc = xmlhttp.responseXML;
     allete = allete.replace(".", "_");
     if (allete == "a999") {
         alleteValue = Number(1 / 611);
@@ -320,24 +307,6 @@ function getAllete(xmlfile, allete) {
     return (alleteValue);
 }
 
-function cookie(name) {
-    var cookieArray = document.cookie.split("; "); //得到分割的cookie名值对
-    var cookie = new Object();
-    for (var i = 0; i < cookieArray.length; i++) {
-        var arr = cookieArray[i].split("=");       //将名和值分开
-        if (arr[0] == name)return unescape(arr[1]); //如果是指定的cookie，则返回它的值
-    }
-    return "";
-}
-
-function getCookie(objName) {//获取指定名称的cookie的值
-    var arrStr = document.cookie.split("; ");
-    for (var i = 0; i < arrStr.length; i++) {
-        var temp = arrStr[i].split("=");
-        if (temp[0] == objName) return unescape(temp[1]);
-    }
-}
-
 function addCookie(objName, objValue, objHours) {      //添加cookie
     var str = objName + "=" + escape(objValue);
     if (objHours > 0) {                               //为时不设定过期时间，浏览器关闭时cookie自动消失
@@ -347,13 +316,6 @@ function addCookie(objName, objValue, objHours) {      //添加cookie
         str += "; expires=" + date.toGMTString();
     }
     document.cookie = str;
-}
-
-function SetCookie(name, value) {
-    var Days = 30; //此 cookie 将被保存 30 天
-    var exp = new Date();    //new Date("December 31, 9998");
-    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
 function getCookie(name) {
