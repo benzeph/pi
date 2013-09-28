@@ -81,30 +81,30 @@ describe("For condition pq and pq", function () {
 
 describe("For condition pq and qr", function () {
     it("it should return true when input is 11 12 12 13", function () {
-        expect(condtion_pq_qr(11, 12, 12, 13)).toBe(true);
+        expect(condition_pq_qr(11, 12, 12, 13)).toBe(true);
     });
     it("it should return true when input is 11 12 11 13", function () {
-        expect(condtion_pq_qr(11, 12, 11, 13)).toBe(true);
+        expect(condition_pq_qr(11, 12, 11, 13)).toBe(true);
     });
     it("it should return true when input is 11 12 13 11", function () {
-        expect(condtion_pq_qr(11, 12, 13, 11)).toBe(true);
+        expect(condition_pq_qr(11, 12, 13, 11)).toBe(true);
     });
     it("it should return true when input is 11 12 13 12", function () {
-        expect(condtion_pq_qr(11, 12, 13, 12)).toBe(true);
+        expect(condition_pq_qr(11, 12, 13, 12)).toBe(true);
     });
     it("it should return false when input is 11 12 11 12", function () {
-        expect(condtion_pq_qr(11, 12, 11, 12)).toBe(false);
+        expect(condition_pq_qr(11, 12, 11, 12)).toBe(false);
     });
     it("it should return false when input is 12 11 11 12", function () {
-        expect(condtion_pq_qr(12, 11, 11, 12)).toBe(false);
+        expect(condition_pq_qr(12, 11, 11, 12)).toBe(false);
     });
     it("it should return false when input is 12 12 11 12", function () {
-        expect(condtion_pq_qr(12, 12, 11, 12)).toBe(false);
+        expect(condition_pq_qr(12, 12, 11, 12)).toBe(false);
     });
     it("it should return false when input is 11 12 12 12", function () {
-        expect(condtion_pq_qr(11, 12, 12, 12)).toBe(false);
+        expect(condition_pq_qr(11, 12, 12, 12)).toBe(false);
     });
     it("it should return false when input is 12 12 12 12", function () {
-        expect(condtion_pq_qr(12, 12, 12, 12)).toBe(false);
+        expect(condition_pq_qr(12, 12, 12, 12)).toBe(false);
     });
 });

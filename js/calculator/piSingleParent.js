@@ -151,7 +151,7 @@ function condition_pq_pq(C1, C2, AF1, AF2) {
     return C1 != C2 && AF1 != AF2 && (C1 == AF1 || C1 == AF2) && (C2 == AF1 || C2 == AF2);
 }
 
-function condtion_pq_qr(C1, C2, AF1, AF2) {
+function condition_pq_qr(C1, C2, AF1, AF2) {
     return (C1 != C2 && AF1 != AF2) && (((AF1 == C1 || AF1 == C2) && (AF2 != C1 && AF2 != C2)) || ((AF2 == C1 || AF2 == C2) && (AF1 != C1 && AF1 != C2)));
 }
 
@@ -175,10 +175,10 @@ function calculatePi(rowID) {
         pi = 1 / (Number(C1value) * 2);
     } else if (condition_pq_pq(C1, C2, AF1, AF2)) {
         pi = (Number(C1value) + Number(C2value)) / (4 * Number(C1value) * Number(C2value));
-    } else if (condtion_pq_qr(C1, C2, AF1, AF2)) {
-        if (C1 == AF1 && C1 != AF2) {
+    } else if (condition_pq_qr(C1, C2, AF1, AF2)) {
+        if (C1 == AF1 || C1 == AF2) {
             pi = 1 / (4 * Number(C1value));
-        } else if (C2 == AF1 && C2 != AF2) {
+        } else if (C2 == AF1 || C2 == AF2) {
             pi = 1 / (4 * Number(C2value));
         }
     }
