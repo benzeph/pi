@@ -74,8 +74,8 @@ function piSingleParentLoadRow(rowID, locus, AF1, AF2, C1, C2) {
     newPi.innerHTML = "<span class='input-small uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(6);
     newDeleteTD.innerHTML = "<button type='button' class='btn  btn-small  btn-danger' onclick=\"piSingleParentDeleteRow('row" + rowID + "','" + rowID + "')\"><i class='icon-remove icon-white'></i> 删除</button>";
-    var selectLocas = piSingleParentFindObj("locus_" + rowID);
-    selectLocas.selectedIndex = locus;
+    var selectLocus = piSingleParentFindObj("locus_" + rowID);
+    selectLocus.selectedIndex = locus;
     piSingleParentTrLastIndex.value = (rowID + 1).toString();
     piSingleParentCurrentCount.value = (rowID).toString();
     var linesCount = document.getElementById("piSingleParentRowCount");
@@ -125,6 +125,26 @@ function reloadValidate() {
     });
 }
 
+function condition_qq_qq(AF1, AF2, C1, C2) {
+    return AF1 == AF2 && C1 == C2 && AF1 == C1;
+}
+
+function condition_pq_qq(C1, C2, AF1, AF2) {
+    return C1 != C2 && AF1 == AF2 && (AF1 == C1 || AF1 == C2);
+}
+
+function condition_qq_qr(AF1, AF2, C1, C2) {
+    return AF1 != AF2 && C1 == C2 && (C1 == AF1 || C1 == AF2);
+}
+
+function condition_pq_pq(C1, C2, AF1, AF2) {
+    return C1 != C2 && AF1 != AF2 && (C1 == AF1 || C1 == AF2) && (C2 == AF1 || C2 == AF2);
+}
+
+function condtion_pq_qr(C1, C2, AF1, AF2) {
+    return C1 != C2 && AF1 != AF2 && ((C1 == AF1 && C1 != AF2) || (C2 == AF1 && C2 != AF2));
+}
+
 function calculatePi(rowID) {
     var locus = piSingleParentFindObj("locus_" + (rowID), document).value;
     var AF1 = piSingleParentFindObj("AF1_" + (rowID), document).value;
@@ -136,15 +156,15 @@ function calculatePi(rowID) {
     var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C1);
     var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
     var pi = 0;
-    if (AF1 == AF2 && C1 == C2 && AF1 == C1) {
+    if (condition_qq_qq(AF1, AF2, C1, C2)) {
         pi = 1 / Number(C1value);
-    } else if (C1 != C2 && AF1 == AF2 && (AF1 == C1 || AF1 == C2)) {
+    } else if (condition_pq_qq(C1, C2, AF1, AF2)) {
         pi = 1 / (Number(AF1value) * 2);
-    } else if (AF1 != AF2 && C1 == C2 && (C1 == AF1 || C1 == AF2)) {
+    } else if (condition_qq_qr(AF1, AF2, C1, C2)) {
         pi = 1 / (Number(C1value) * 2);
-    } else if (C1 != C2 && AF1 != AF2 && (C1 == AF1 || C1 == AF2) && (C2 == AF1 || C2 == AF2)) {
+    } else if (condition_pq_pq(C1, C2, AF1, AF2)) {
         pi = (Number(C1value) + Number(C2value)) / (4 * Number(C1value) * Number(C2value));
-    } else if (C1 != C2 && AF1 != AF2 && ((C1 == AF1 && C1 != AF2) || (C2 == AF1 && C2 != AF2))) {
+    } else if (condtion_pq_qr(C1, C2, AF1, AF2)) {
         if (C1 == AF1 && C1 != AF2) {
             pi = 1 / (4 * Number(C1value));
         } else if (C2 == AF1 && C2 != AF2) {
