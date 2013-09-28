@@ -146,15 +146,19 @@ function reloadValidate() {
 function condition_qq_qq_qq(C1, C2, M1, M2, AF1, AF2) {
     return C1 == C2 && M1 == M2 && AF1 == AF2 && C1 == M1 && M1 == AF1;
 }
+
 function condition_qq_qq_qr(C1, C2, M1, M2, AF1, AF2) {
     return C1 == C2 && M1 == M2 && AF1 != AF2 && C1 == M1 && ((M1 == AF1 && M1 != AF2) || (M1 != AF1 && M1 == AF2));
 }
-function condition_qq_pq_qq(C1, C2, AF1, AF2, M1, M2) {
+
+function condition_qq_pq_qq(C1, C2, M1, M2, AF1, AF2) {
     return C1 == C2 && AF1 == AF2 && C1 == AF1 && M1 != M2 && (M1 == C1 || M2 == C1);
 }
+
 function condition_qq_pq_qr(C1, C2, M1, M2, AF1, AF2) {
     return C1 == C2 && M1 != M2 && AF1 != AF2 && ((C1 == M1 && C1 != M2) || (C1 != M1 && C1 != M2)) && ((C1 == AF1 && C1 != AF2) || (C1 != AF1 && C1 != AF2));
 }
+
 function calculatePi(rowID) {
     var locus = piParentsFindObj("locus_" + (rowID), document).value;
     var AF1 = piParentsFindObj("AF1_" + (rowID), document).value;
@@ -178,7 +182,7 @@ function calculatePi(rowID) {
     if (condition_qq_qq_qr(C1, C2, M1, M2, AF1, AF2)) {
         pi = 1 / (2 * Number(C1value));
     }
-    if (condition_qq_pq_qq(C1, C2, AF1, AF2, M1, M2)) {
+    if (condition_qq_pq_qq(C1, C2, M1, M2, AF1, AF2)) {
         pi = 1 / Number(C1value);
     }
     if (condition_qq_pq_qr(C1, C2, M1, M2, AF1, AF2)) {
