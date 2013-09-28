@@ -51,9 +51,9 @@ describe("For condition qq pq qr", function () {
         expect(condition_qq_pq_qr(11, 11, 11, 11, 11, 12)).toBe(false);
     });
 });
-//
-//describe("For condition pq pp qq",function(){
-//    it("it should return true when input is 11 12 11 11 12 12",function(){
-//        expect(condition_pq_pp_qq(11,12,11,11,12,12)).toBe(true);
-//    });
-//});
+
+describe("For condition pq pp qq",function(){
+    it("it should return true when input is 11 12 11 11 12 12",function(){
+        expect(condition_pq_pp_qq(11,12,11,11,12,12)).toBe(true);
+    });
+});

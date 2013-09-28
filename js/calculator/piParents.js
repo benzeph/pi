@@ -156,13 +156,15 @@ function condition_qq_pq_qq(C1, C2, M1, M2, AF1, AF2) {
 }
 
 function condition_qq_pq_qr(C1, C2, M1, M2, AF1, AF2) {
-    return C1 == C2 && M1 != M2 && AF1 != AF2 && ((C1 == M1 && C1 != M2) || (C1 != M1 && C1 == M2)) && ((C1 == AF1 && C1 != AF2) || (C1 != AF1 && C1 == AF2));
+    return C1 == C2 && M1 != M2 && AF1 != AF2 &&
+        ((C1 == M1 && C1 != M2) || (C1 != M1 && C1 == M2)) &&
+        ((C1 == AF1 && C1 != AF2) || (C1 != AF1 && C1 == AF2));
 }
 
 function condition_pq_pp_qq(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 == M2 && AF1 == AF2 && M1 != AF1 &&
         ((M1 == C1 && M1 != C2) || (M1 != C1 && M1 == C2)) &&
-        ((M1 == AF1 && M1 != AF2) || (M1 != AF1 && M1 == AF2));
+        ((AF1 == C1 && AF1 != C2) || (AF1 != C1 && AF2 == C2));
 }
 function condition_pq_pr_qq(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 != M2 && AF1 == AF2 &&
