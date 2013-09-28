@@ -135,7 +135,7 @@ function reloadValidate() {
     });
 }
 
-function condition_qq_qq(AF1, AF2, C1, C2) {
+function condition_qq_qq(C1, C2, AF1, AF2) {
     return AF1 == AF2 && C1 == C2 && AF1 == C1;
 }
 
@@ -143,7 +143,7 @@ function condition_pq_qq(C1, C2, AF1, AF2) {
     return C1 != C2 && AF1 == AF2 && (AF1 == C1 || AF1 == C2);
 }
 
-function condition_qq_qr(AF1, AF2, C1, C2) {
+function condition_qq_qr(C1, C2, AF1, AF2) {
     return AF1 != AF2 && C1 == C2 && (C1 == AF1 || C1 == AF2);
 }
 
@@ -167,11 +167,11 @@ function calculatePi(rowID) {
     var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
     var pi = 0;
 
-    if (condition_qq_qq(AF1, AF2, C1, C2)) {
+    if (condition_qq_qq(C1, C2, AF1, AF2)) {
         pi = 1 / Number(C1value);
     } else if (condition_pq_qq(C1, C2, AF1, AF2)) {
         pi = 1 / (Number(AF1value) * 2);
-    } else if (condition_qq_qr(AF1, AF2, C1, C2)) {
+    } else if (condition_qq_qr(C1, C2, AF1, AF2)) {
         pi = 1 / (Number(C1value) * 2);
     } else if (condition_pq_pq(C1, C2, AF1, AF2)) {
         pi = (Number(C1value) + Number(C2value)) / (4 * Number(C1value) * Number(C2value));
