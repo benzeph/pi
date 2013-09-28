@@ -20,7 +20,7 @@ function loadTableFromCookie() {
         var AF2 = getCookie("piSingleParentAF2_" + i);
         var C1 = getCookie("piSingleParentC1_" + i);
         var C2 = getCookie("piSingleParentC2_" + i);
-        if (!(AF1 == null && AF2 == null && M1 == null && M2 == null && C1 == null && C2 == null)) {
+        if (!(AF1 == null && AF2 == null && C1 == null && C2 == null)) {
             piSingleParentLoadRow(i, locus, AF1, AF2, C1, C2);
         }
     }
@@ -179,10 +179,9 @@ function calculatePi(rowID) {
 
 function calculate() {
     var cpi = 1;
-    var rcp = 0;
+    var rcp;
     var linesCount = getCookie("piSingleParentLinesCount");
     for (var i = 1; i <= Number(linesCount); i++) {
-        var locus = getCookie("piSingleParentLocus_" + i);
         var AF1 = getCookie("piSingleParentAF1_" + i);
         var AF2 = getCookie("piSingleParentAF2_" + i);
         var C1 = getCookie("piSingleParentC1_" + i);
