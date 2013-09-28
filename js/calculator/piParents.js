@@ -159,6 +159,17 @@ function condition_qq_pq_qr(C1, C2, M1, M2, AF1, AF2) {
     return C1 == C2 && M1 != M2 && AF1 != AF2 && ((C1 == M1 && C1 != M2) || (C1 != M1 && C1 == M2)) && ((C1 == AF1 && C1 != AF2) || (C1 != AF1 && C1 == AF2));
 }
 
+function condition_pq_pp_qq(C1, C2, M1, M2, AF1, AF2) {
+    return C1 != C2 && M1 == M2 && AF1 == AF2 && M1 != AF1 &&
+        ((M1 == C1 && M1 != C2) || (M1 != C1 && M1 == C2)) &&
+        ((M1 == AF1 && M1 != AF2) || (M1 != AF1 && M1 == AF2));
+}
+function condition_pq_pr_qq(C1, C2, M1, M2, AF1) {
+    return C1 != C2 && M1 != M2 && C1 == C2 &&
+        (((M1 == C1 || M1 == C2) && (M2 != C1 && M2 != C2)) ||
+            ((M2 == C1 || M2 == C2) && (M1 != C1 && M1 != C2))) &&
+        (AF1 == C1 || AF1 == C2);
+}
 function calculatePi(rowID) {
     var locus = piParentsFindObj("locus_" + (rowID), document).value;
     var AF1 = piParentsFindObj("AF1_" + (rowID), document).value;
@@ -176,17 +187,23 @@ function calculatePi(rowID) {
     var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
     var pi = 0;
 
-    if (condition_qq_qq_qq(C1, C2, M1, M2, AF1, AF2)) {
+    if (condition_qq_pq_qq(C1, C2, M1, M2, AF1, AF2)) {
         pi = 1 / Number(C1value);
     }
-    if (condition_qq_qq_qr(C1, C2, M1, M2, AF1, AF2)) {
-        pi = 1 / (2 * Number(C1value));
-    }
-    if (condition_qq_pq_qq(C1, C2, M1, M2, AF1, AF2)) {
+    if (condition_qq_qq_qq(C1, C2, M1, M2, AF1, AF2)) {
         pi = 1 / Number(C1value);
     }
     if (condition_qq_pq_qr(C1, C2, M1, M2, AF1, AF2)) {
         pi = 1 / (2 * Number(C1value));
+    }
+    if (condition_qq_qq_qr(C1, C2, M1, M2, AF1, AF2)) {
+        pi = 1 / (2 * Number(C1value));
+    }
+    if (condition_pq_pp_qq(C1, C2, M1, M2, AF1, AF2)) {
+        pi = 1 / Number(AF1value);
+    }
+    if (condition_pq_pr_qq(C1, C2, M1, M2, AF1)) {
+        pi = 1 / Number(AF1value);
     }
     if (C1 != C2) {
         if (AF1 == AF2 && (AF1 == C1 || AF1 == C2)) {
