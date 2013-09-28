@@ -59,6 +59,7 @@ function piSingleParentLoadRow(rowID, locus, AF1, AF2, C1, C2) {
     var piSingleParentCurrentCount = piSingleParentFindObj("piSingleParentCurrentCount", document);
     var piSingleParentTable = piSingleParentFindObj("piSingleParentTable", document);
     var newTR = piSingleParentTable.insertRow(piSingleParentTable.rows.length);
+
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML = generateSelectCode(rowID);
@@ -74,12 +75,16 @@ function piSingleParentLoadRow(rowID, locus, AF1, AF2, C1, C2) {
     newPi.innerHTML = "<span class='input-small uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(6);
     newDeleteTD.innerHTML = "<button type='button' class='btn  btn-small  btn-danger' onclick=\"piSingleParentDeleteRow('row" + rowID + "','" + rowID + "')\"><i class='icon-remove icon-white'></i> 删除</button>";
+
     var selectLocus = piSingleParentFindObj("locus_" + rowID);
     selectLocus.selectedIndex = locus;
+
     piSingleParentTrLastIndex.value = (rowID + 1).toString();
     piSingleParentCurrentCount.value = (rowID).toString();
+
     var linesCount = document.getElementById("piSingleParentRowCount");
     linesCount.innerHTML = (piSingleParentTable.rows.length - 1);
+
     reloadValidate();
 }
 
@@ -90,6 +95,7 @@ function piSingleParentAddRow() {
     var rowID = parseInt(piSingleParentTrLastIndex.value);
     var piSingleParentTable = piSingleParentFindObj("piSingleParentTable", document);
     var newTR = piSingleParentTable.insertRow(piSingleParentTable.rows.length);
+
     newTR.id = "row" + rowID;
     var newAllele = newTR.insertCell(0);
     newAllele.innerHTML = generateSelectCode(rowID);
@@ -105,11 +111,15 @@ function piSingleParentAddRow() {
     newPi.innerHTML = "<span class='input-small uneditable-input' id='PI_" + rowID + "'></span>";
     var newDeleteTD = newTR.insertCell(6);
     newDeleteTD.innerHTML = "<button type='button' class='btn  btn-small  btn-danger' onclick=\"piSingleParentDeleteRow('row" + rowID + "','" + rowID + "')\"><i class='icon-remove icon-white'></i> 删除</button>";
+
     piSingleParentTrLastIndex.value = (rowID + 1).toString();
     piSingleParentCurrentCount.value = (rowID).toString();
+
     var linesCount = document.getElementById("piSingleParentRowCount");
     linesCount.innerHTML = (piSingleParentTable.rows.length - 1);
+
     reloadValidate();
+
     addCookie("piSingleParentLinesCount", Number(piSingleParentCurrentCount.value), 1);
 }
 
@@ -156,6 +166,7 @@ function calculatePi(rowID) {
     var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C1);
     var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
     var pi = 0;
+
     if (condition_qq_qq(AF1, AF2, C1, C2)) {
         pi = 1 / Number(C1value);
     } else if (condition_pq_qq(C1, C2, AF1, AF2)) {
@@ -171,9 +182,12 @@ function calculatePi(rowID) {
             pi = 1 / (4 * Number(C2value));
         }
     }
+
     var PI = piSingleParentFindObj("PI_" + rowID, document);
     PI.innerHTML = pi.toFixed(6);
+
     addCookie("piSingleParentPI_" + rowID, pi.toFixed(6), 1);
+
     return(pi);
 }
 
@@ -181,6 +195,7 @@ function calculate() {
     var cpi = 1;
     var rcp;
     var linesCount = getCookie("piSingleParentLinesCount");
+
     for (var i = 1; i <= Number(linesCount); i++) {
         var AF1 = getCookie("piSingleParentAF1_" + i);
         var AF2 = getCookie("piSingleParentAF2_" + i);
@@ -190,14 +205,18 @@ function calculate() {
             cpi = cpi * Number(calculatePi(i));
         }
     }
+
     rcp = cpi / (1 + cpi);
+
     var CPI = document.getElementById("CPI");
     CPI.innerHTML = cpi.toFixed(6);
     var RCP = document.getElementById("RCP");
     RCP.innerHTML = rcp.toFixed(6);
+
+    var piSingleParentRowCount = document.getElementById("piSingleParentRowCount");
+
     addCookie("piSingleParentCPI", cpi.toFixed(6), 1);
     addCookie("piSingleParentRCP", rcp.toFixed(6), 1);
-    var piSingleParentRowCount = document.getElementById("piSingleParentRowCount");
     addCookie("piSingleParentRowCount", piSingleParentRowCount.innerHTML, 1);
 }
 
@@ -208,6 +227,7 @@ function saveDataIntoCookie(rowID, hours) {
     var AF2 = piSingleParentFindObj("AF2_" + rowID, document).value;
     var C1 = piSingleParentFindObj("C1_" + rowID, document).value;
     var C2 = piSingleParentFindObj("C2_" + rowID, document).value;
+
     addCookie("piSingleParentLocus_" + rowID, locus, hours);
     addCookie("piSingleParentlocusValue_" + rowID, locusValue, hours);
     addCookie("piSingleParentAF1_" + rowID, AF1, hours);
