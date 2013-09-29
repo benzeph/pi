@@ -166,27 +166,32 @@ function condition_pq_pp_qq(C1, C2, M1, M2, AF1, AF2) {
         ((M1 == C1 && M1 != C2) || (M1 != C1 && M1 == C2)) &&
         ((AF1 == C1 && AF1 != C2) || (AF1 != C1 && AF2 == C2));
 }
+
 function condition_pq_pr_qq(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 != M2 && AF1 == AF2 &&
         (((M1 == C1 || M1 == C2) && (M2 != C1 && M2 != C2)) ||
             ((M2 == C1 || M2 == C2) && (M1 != C1 && M1 != C2))) &&
         (AF1 == C1 || AF1 == C2);
 }
+
 function condition_pq_pp_pq(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 == M2 && AF1 != AF2 && (M1 == C1 || M1 == C2) && (C1 == AF1 || C1 == AF2) && (C2 == AF1 || C2 == AF2);
 }
+
 function condition_pq_pr_or_ps_pq(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 != M2 && AF1 != AF2 &&
         (((M1 == C1 || M1 == C2) && (M2 != C1 && M2 != C2)) || ((M2 == C1 || M2 == C2) && (M1 != C1 && M1 != C2))) &&
         (C1 == AF1 || C1 == AF2) && (C2 == AF1 || C2 == AF2);
 }
+
 function condition_pq_pp_qr(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 == M2 && AF1 != AF2 && (M1 == C1 || M1 == C2) &&
         (((AF1 == C1 || AF1 == C2) && (AF2 != C1 && AF2 != C2)) || ((AF2 == C1 || AF2 == C2) && (AF1 != C1 && AF1 != C2)));
 }
-function condition_pq_pr_or_pr_qr(C1, C2, M1, M2, AF1, AF2) {
+
+function condition_pq_pr_or_ps_qr(C1, C2, M1, M2, AF1, AF2) {
     return C1 != C2 && M1 != M2 && AF1 != AF2 &&
-        (((M1 == C1 || M1 == C2) && (M2 != C1 && M2 != C2)) || ((M2 == C1 || M2 == C2) && (M1 != C1 && M1 == C2))) &&
+        (((M1 == C1 || M1 == C2) && (M2 != C1 && M2 != C2)) || ((M2 == C1 || M2 == C2) && (M1 != C1 && M1 != C2))) &&
         (((AF1 == C1 || AF1 == C2) && (AF2 != C1 && AF2 != C2)) || ((AF2 == C1 || AF2 == C2) && (AF1 != C1 && AF1 != C2)));
 }
 function calculatePi(rowID) {
@@ -245,7 +250,7 @@ function calculatePi(rowID) {
             pi = 1 / Number(C1);
         }
     }
-    if (condition_pq_pr_or_pr_qr(C1, C2, M1, M2, AF1, AF2)) {
+    if (condition_pq_pr_or_ps_qr(C1, C2, M1, M2, AF1, AF2)) {
         if (C1 == M1) {
             pi = 1 / Number(C2);
         } else {

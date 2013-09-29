@@ -100,6 +100,27 @@ describe("For condition pq pp pq", function () {
     });
 });
 
+describe("For condition pq pp qr", function () {
+    it("it should return true when input is 11 12 11 11 12 13", function () {
+        expect(condition_pq_pp_qr(11, 12, 11, 11, 12, 13)).toBe(true);
+    });
+    it("it should return true when input is 11 12 11 11 13 12", function () {
+        expect(condition_pq_pp_qr(11, 12, 11, 11, 13, 12)).toBe(true);
+    });
+    it("it should return true when input is 11 12 12 12 12 13", function () {
+        expect(condition_pq_pp_qr(11, 12, 12, 12, 12, 13)).toBe(true);
+    });
+    it("it should return true when input is 11 12 12 12 13 11", function () {
+        expect(condition_pq_pp_qr(11, 12, 12, 12, 13, 11)).toBe(true);
+    });
+    it("it should return false when input is 11 12 11 12 12 11", function () {
+        expect(condition_pq_pp_qr(11, 12, 11, 12, 12, 11)).toBe(false);
+    });
+    it("it should return false when input is 11 12 12 12 12 11", function () {
+        expect(condition_pq_pp_qr(11, 12, 12, 12, 12, 12)).toBe(false);
+    });
+});
+
 describe("For condition pq pr or ps pq", function () {
     it("it should return true when input is 11 12 11 13 11 12", function () {
         expect(condition_pq_pr_or_ps_pq(11, 12, 11, 13, 11, 12)).toBe(true);
@@ -118,5 +139,26 @@ describe("For condition pq pr or ps pq", function () {
     });
     it("it should return false when input is 11 12 12 12 12 12", function () {
         expect(condition_pq_pr_or_ps_pq(11, 12, 12, 12, 12, 12)).toBe(false);
+    });
+});
+
+describe("For condition pq pr or ps qr", function () {
+    it("it should return true when input is 11 12 11 13 11 13", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 11, 13, 11, 13)).toBe(true);
+    });
+    it("it should return true when input is 11 12 11 13 13 11", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 11, 13, 13, 11)).toBe(true);
+    });
+    it("it should return true when input is 11 12 13 11 11 13", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 13, 11, 11, 13)).toBe(true);
+    });
+    it("it should return true when input is 11 12 13 11 13 11", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 13, 11, 13, 11)).toBe(true);
+    });
+    it("it should return false when input is 11 12 11 12 11 12", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 11, 12, 11, 12)).toBe(false);
+    });
+    it("it should return false when input is 11 12 12 12 12 12", function () {
+        expect(condition_pq_pr_or_ps_qr(11, 12, 12, 12, 12, 12)).toBe(false);
     });
 });
