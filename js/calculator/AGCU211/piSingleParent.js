@@ -28,27 +28,27 @@ function loadTableFromCookie() {
 
 function generateSelectCode(rowID) {
     var code = "<select id='locus_" + rowID + "' onclick='saveDataIntoCookie(" + rowID + ", 1)' class='span2'>" +
-        "<option value=\"D3S1358\">D3S1358</option>" +
-        "<option value=\"D13S317\">D13S317</option>" +
-        "<option value=\"D7S820\">D7S820</option>" +
-        "<option value=\"D16S539\">D16S539</option>" +
-        "<option value=\"PentaE\">Penta E</option>" +
+        "<option value=\"D1GATA113\">D1GATA113</option>" +
+        "<option value=\"D1S1627\">D1S1627</option>" +
+        "<option value=\"D1S1677\">D1S1677</option>" +
         "<option value=\"D2S441\">D2S441</option>" +
-        "<option value=\"TPOX\">TPOX</option>" +
-        "<option value=\"TH01\">TH01</option>" +
-        "<option value=\"D2S1338\">D2S1338</option>" +
-        "<option value=\"CSF1PO\">CSF1PO</option>" +
-        "<option value=\"PentaD\">Penta D</option>" +
+        "<option value=\"D2S1776\">D2S1776</option>" +
+        "<option value=\"D3S4529\">D3S4529</option>" +
+        "<option value=\"D4S2408\">D4S2408</option>" +
+        "<option value=\"D5S2500\">D5S2500</option>" +
+        "<option value=\"D6S474\">D6S474</option>" +
+        "<option value=\"D6S1017\">D6S1017</option>" +
+        "<option value=\"D9S1122\">D9S1122</option>" +
         "<option value=\"D10S1248\">D10S1248</option>" +
+        "<option value=\"D10S1435\">D10S1435</option>" +
+        "<option value=\"D11S4463\">D11S4463</option>" +
+        "<option value=\"D12ATA63\">D12ATA63</option>" +
+        "<option value=\"D14S1434\">D14S1434</option>" +
+        "<option value=\"D17S1301\">D17S1301</option>" +
+        "<option value=\"D18S853\">D18S853</option>" +
         "<option value=\"D19S433\">D19S433</option>" +
-        "<option value=\"vWA\">vWA</option>" +
-        "<option value=\"D21S11\">D21S11</option>" +
-        "<option value=\"D18S51\">D18S51</option>" +
-        "<option value=\"D6S1043\">D6S1043</option>" +
-        "<option value=\"D8S1179\">D8S1179</option>" +
-        "<option value=\"D5S818\">D5S818</option>" +
-        "<option value=\"D12S391\">D12S391</option>" +
-        "<option value=\"FGA\">FGA</option>" +
+        "<option value=\"D20S482\">D20S482</option>" +
+        "<option value=\"D22S1045\">D22S1045</option>" +
         "</select>";
     return(code);
 }
@@ -161,10 +161,10 @@ function calculatePi(rowID) {
     var AF2 = piSingleParentFindObj("AF2_" + (rowID), document).value;
     var C1 = piSingleParentFindObj("C1_" + (rowID), document).value;
     var C2 = piSingleParentFindObj("C2_" + (rowID), document).value;
-    var AF1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + AF1);
-    var AF2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + AF2);
-    var C1value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C1);
-    var C2value = getAllete("http://localhost:8080/relations/xml/AGCU_EX22/" + locus + ".xml", "a" + C2);
+    var AF1value = getAllete("http://localhost:8080/relations/xml/AGCU211/" + locus + ".xml", "a" + AF1);
+    var AF2value = getAllete("http://localhost:8080/relations/xml/AGCU211/" + locus + ".xml", "a" + AF2);
+    var C1value = getAllete("http://localhost:8080/relations/xml/AGCU211/" + locus + ".xml", "a" + C1);
+    var C2value = getAllete("http://localhost:8080/relations/xml/AGCU211/" + locus + ".xml", "a" + C2);
     var pi = 0;
 
     if (condition_qq_qq(C1, C2, AF1, AF2)) {
