@@ -275,7 +275,6 @@ function calculatePi(rowID) {
         }
     }
 
-
     if (condition_pq_pr_or_ps_qr(C1, C2, M1, M2, AF1, AF2)) {
         if (C1 == M1) {
             pi = 1 / Number(C2value);
