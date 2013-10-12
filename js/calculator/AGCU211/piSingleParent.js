@@ -109,18 +109,6 @@ function piSingleParentAddRow() {
     addCookie("piSingleParentLinesCount", Number(piSingleParentCurrentCount.value), 1);
 }
 
-function reloadValidate() {
-    $('form').validate({
-        onBlur: true,
-        eachValidField: function () {
-            $(this).closest('div').removeClass('error').addClass('success');
-        },
-        eachInvalidField: function () {
-            $(this).closest('div').removeClass('success').addClass('error');
-        }
-    });
-}
-
 function condition_qq_qq(C1, C2, AF1, AF2) {
     return AF1 == AF2 && C1 == C2 && AF1 == C1;
 }

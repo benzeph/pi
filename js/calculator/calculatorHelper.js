@@ -11,3 +11,15 @@ function piParentsFindObj(theObj, theDoc) {
     if (!foundObj && document.getElementById) foundObj = document.getElementById(theObj);
     return foundObj;
 }
+
+function reloadValidate() {
+    $('form').validate({
+        onBlur: true,
+        eachValidField: function () {
+            $(this).closest('div').removeClass('error').addClass('success');
+        },
+        eachInvalidField: function () {
+            $(this).closest('div').removeClass('success').addClass('error');
+        }
+    });
+}
